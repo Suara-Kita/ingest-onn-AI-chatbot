@@ -43,6 +43,7 @@ export default function InputBar({ onSend, isLoading }: InputBarProps) {
           disabled={isLoading}
         />
         <button
+          type="button"
           onClick={handleSend}
           disabled={!value.trim() || isLoading}
           aria-label="Send message"

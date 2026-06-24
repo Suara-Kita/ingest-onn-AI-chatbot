@@ -40,11 +40,11 @@ export default function EmptyState({ onSelect }: EmptyStateProps) {
           {SUGGESTIONS.map((s) => (
             <button
               key={s}
+              type="button"
               onClick={() => onSelect(s)}
-              className="text-sm px-4 py-2 rounded-full border transition-colors cursor-pointer"
+              className="text-sm px-4 py-2 rounded-full border transition-colors cursor-pointer bg-[var(--secondary)] hover:bg-[var(--accent)]"
               style={{
                 borderColor: 'var(--border)',
-                backgroundColor: 'var(--secondary)',
                 color: 'var(--secondary-foreground)',
               }}
             >
