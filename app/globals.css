@@ -22,21 +22,21 @@
 }
 
 :root {
-  --background: #fff;
-  --foreground: #0f0f0f;
-  --card: #fff;
-  --card-foreground: #0f0f0f;
-  --primary: #0a4bff;
-  --primary-foreground: #f9fafb;
-  --secondary: #f5f5f5;
-  --secondary-foreground: #1f1f1f;
-  --muted: #f5f5f5;
-  --muted-foreground: #737373;
-  --accent: #f5f5f5;
-  --accent-foreground: #1f1f1f;
-  --border: #e5e5e5;
-  --input: #e5e5e5;
-  --ring: #bdbdbd;
+  --background: #ffffff;
+  --foreground: #1e293b;
+  --card: #ffffff;
+  --card-foreground: #1e293b;
+  --primary: #2563eb;
+  --primary-foreground: #ffffff;
+  --secondary: #f4f6f9;
+  --secondary-foreground: #1e293b;
+  --muted: #f4f6f9;
+  --muted-foreground: #94a3b8;
+  --accent: #eff6ff;
+  --accent-foreground: #1e293b;
+  --border: #e8ebf0;
+  --input: #e8ebf0;
+  --ring: #94a3b8;
 }
 
 *, ::backdrop, ::before, ::after {

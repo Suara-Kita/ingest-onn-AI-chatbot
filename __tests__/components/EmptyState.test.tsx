@@ -3,25 +3,25 @@ import { render, screen, fireEvent } from '@testing-library/react'
 import EmptyState from '@/components/EmptyState'
 
 describe('EmptyState', () => {
-  it('renders the Onn AI heading', () => {
+  it('renders the Hello heading', () => {
     render(<EmptyState onSelect={jest.fn()} />)
-    expect(screen.getByRole('heading', { name: /onn ai/i })).toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: /hello/i, level: 1 })).toBeInTheDocument()
   })
 
-  it('renders exactly 6 suggestion buttons', () => {
+  it('renders exactly 6 suggestion cards', () => {
     render(<EmptyState onSelect={jest.fn()} />)
     expect(screen.getAllByRole('button')).toHaveLength(6)
   })
 
-  it('calls onSelect with the correct text when a suggestion is clicked', () => {
+  it('calls onSelect with the correct question when a card is clicked', () => {
     const onSelect = jest.fn()
     render(<EmptyState onSelect={onSelect} />)
-    fireEvent.click(screen.getByText('Apakah GDP Johor 2025?'))
+    fireEvent.click(screen.getByText('GDP Johor 2025'))
     expect(onSelect).toHaveBeenCalledWith('Apakah GDP Johor 2025?')
     expect(onSelect).toHaveBeenCalledTimes(1)
   })
 
-  it('renders bilingual tagline mentioning sekijang', () => {
+  it('renders subheading mentioning Sekijang', () => {
     render(<EmptyState onSelect={jest.fn()} />)
     expect(screen.getByText(/sekijang/i)).toBeInTheDocument()
   })

@@ -26,16 +26,15 @@ export default function InputBar({ onSend, isLoading }: InputBarProps) {
   }
 
   return (
-    <div className="border-t px-4 py-4" style={{ borderColor: 'var(--border)' }}>
-      <div className="flex gap-3 items-end">
+    <div className="pb-2">
+      <div
+        className="flex items-center gap-2.5 rounded-full border pl-5 pr-2 py-2"
+        style={{ backgroundColor: 'var(--secondary)', borderColor: 'var(--border)' }}
+      >
         <textarea
-          className="flex-1 resize-none rounded-xl border px-4 py-3 text-sm placeholder:opacity-50 focus:outline-none min-h-[48px] max-h-[160px] disabled:opacity-50"
-          style={{
-            borderColor: 'var(--input)',
-            backgroundColor: 'var(--background)',
-            color: 'var(--foreground)',
-          }}
-          placeholder="Taip soalan anda... / Type your question..."
+          className="flex-1 resize-none border-none outline-none bg-transparent text-sm placeholder:opacity-50 min-h-[24px] max-h-[120px] py-1.5 disabled:opacity-50"
+          style={{ color: 'var(--foreground)' }}
+          placeholder="Tanya sesuatu... / Ask something.."
           rows={1}
           value={value}
           onChange={e => setValue(e.target.value)}
@@ -47,11 +46,12 @@ export default function InputBar({ onSend, isLoading }: InputBarProps) {
           onClick={handleSend}
           disabled={!value.trim() || isLoading}
           aria-label="Send message"
-          className="w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0 transition-opacity disabled:opacity-40 disabled:cursor-not-allowed"
-          style={{ backgroundColor: 'var(--primary)', color: 'var(--primary-foreground)' }}
+          className="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0 transition-opacity disabled:opacity-40 disabled:cursor-not-allowed"
+          style={{ backgroundColor: '#0f172a' }}
         >
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4">
-            <path d="M3.478 2.405a.75.75 0 00-.926.94l2.432 7.905H13.5a.75.75 0 010 1.5H4.984l-2.432 7.905a.75.75 0 00.926.94 60.519 60.519 0 0018.445-8.986.75.75 0 000-1.218A60.517 60.517 0 003.478 2.405z" />
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth={2.4} strokeLinecap="round" strokeLinejoin="round">
+            <line x1="12" y1="19" x2="12" y2="5" />
+            <polyline points="5 12 12 5 19 12" />
           </svg>
         </button>
       </div>
