@@ -28,11 +28,11 @@ export default function InputBar({ onSend, isLoading }: InputBarProps) {
   return (
     <div className="pb-2">
       <div
-        className="flex items-center gap-2.5 rounded-full border pl-5 pr-2 py-2"
+        className="flex items-center gap-2.5 rounded-full border pl-5 pr-2 py-2 overflow-hidden"
         style={{ backgroundColor: 'var(--secondary)', borderColor: 'var(--border)' }}
       >
         <textarea
-          className="flex-1 resize-none border-none outline-none bg-transparent text-sm placeholder:opacity-50 min-h-[24px] max-h-[120px] py-1.5 disabled:opacity-50"
+          className="flex-1 resize-none border-none outline-none ring-0 focus:ring-0 bg-transparent text-sm placeholder:opacity-50 min-h-[24px] max-h-[120px] py-1.5 disabled:opacity-50"
           style={{ color: 'var(--foreground)' }}
           placeholder="Tanya sesuatu... / Ask something.."
           rows={1}
@@ -46,7 +46,7 @@ export default function InputBar({ onSend, isLoading }: InputBarProps) {
           onClick={handleSend}
           disabled={!value.trim() || isLoading}
           aria-label="Send message"
-          className="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0 transition-opacity disabled:opacity-40 disabled:cursor-not-allowed"
+          className="border-none w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0 transition-opacity disabled:opacity-40 disabled:cursor-not-allowed"
           style={{ backgroundColor: '#0f172a' }}
         >
           <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth={2.4} strokeLinecap="round" strokeLinejoin="round">
