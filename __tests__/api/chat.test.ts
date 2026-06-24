@@ -65,4 +65,17 @@ describe('POST /api/chat', () => {
     expect(res.status).toBe(200)
     expect(data.reply).toContain('tidak tersedia')
   })
+
+  it('passes through sources array from RAG backend', async () => {
+    process.env.RAG_API_URL = 'http://rag-backend'
+    global.fetch = jest.fn().mockResolvedValueOnce({
+      ok: true,
+      json: async () => ({ reply: 'Answer', sources: ['Doc A.md', 'Doc B.md'] }),
+    } as Response)
+
+    const res = await POST(makeRequest({ message: 'Question' }))
+    const data = await res.json()
+
+    expect(data.sources).toEqual(['Doc A.md', 'Doc B.md'])
+  })
 })

@@ -32,4 +32,19 @@ describe('MessageBubble', () => {
     render(<MessageBubble message={aiMsg} />)
     expect(screen.getByRole('link', { name: 'link' })).toBeInTheDocument()
   })
+
+  it('renders citation chips when sources are present', () => {
+    const msgWithSources = {
+      ...aiMsg,
+      sources: ['Laporan Johor 2025.md', 'Analisis Ekonomi.md'],
+    }
+    render(<MessageBubble message={msgWithSources} />)
+    expect(screen.getByText('[1] Laporan Johor 2025.md')).toBeInTheDocument()
+    expect(screen.getByText('[2] Analisis Ekonomi.md')).toBeInTheDocument()
+  })
+
+  it('does not render citation chips when sources are absent', () => {
+    render(<MessageBubble message={aiMsg} />)
+    expect(screen.queryByText(/^\[1\]/)).not.toBeInTheDocument()
+  })
 })

@@ -27,7 +27,7 @@ export default function Home() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ message: text }),
       })
-      const data = (await res.json()) as { reply?: string }
+      const data = (await res.json()) as { reply?: string; sources?: string[] }
       setMessages(prev => [
         ...prev,
         {
@@ -35,6 +35,7 @@ export default function Home() {
           role: 'assistant',
           content: data.reply ?? '',
           timestamp: new Date(),
+          sources: data.sources,
         },
       ])
     } catch {
@@ -44,7 +45,7 @@ export default function Home() {
           id: crypto.randomUUID(),
           role: 'assistant',
           content:
-            'Maaf, ralat berlaku. Sila cuba lagi.\n\nSorry, an error occurred. Please try again.',
+            'Maaf, sistem tidak tersedia buat masa ini. Sila cuba lagi.\n\nSorry, the system is currently unavailable. Please try again.',
           timestamp: new Date(),
         },
       ])

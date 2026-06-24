@@ -19,6 +19,7 @@ export async function POST(req: NextRequest) {
     await new Promise(r => setTimeout(r, 600))
     return NextResponse.json({
       reply: `**[Mock Response — RAG not configured]**\n\nYou asked: "${message.trim()}"\n\nSet \`RAG_API_URL\` in \`.env.local\` to connect to the deployed knowledge base.`,
+      sources: [],
     })
   }
 
@@ -31,8 +32,11 @@ export async function POST(req: NextRequest) {
 
     if (!res.ok) throw new Error(`Backend ${res.status}`)
 
-    const data = (await res.json()) as { reply?: string; answer?: string }
-    return NextResponse.json({ reply: data.reply ?? data.answer ?? '' })
+    const data = (await res.json()) as { reply?: string; answer?: string; sources?: string[] }
+    return NextResponse.json({
+      reply: data.reply ?? data.answer ?? '',
+      sources: data.sources ?? [],
+    })
   } catch {
     return NextResponse.json({ reply: UNAVAILABLE_MSG }, { status: 200 })
   }

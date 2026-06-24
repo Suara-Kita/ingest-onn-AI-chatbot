@@ -44,6 +44,19 @@ export default function MessageBubble({ message }: MessageBubbleProps) {
             <ReactMarkdown remarkPlugins={[remarkGfm]}>
               {message.content}
             </ReactMarkdown>
+            {message.sources && message.sources.length > 0 && (
+              <div className="flex flex-wrap gap-1.5 mt-2 pt-2 border-t" style={{ borderColor: 'var(--border)' }}>
+                {message.sources.map((source, i) => (
+                  <span
+                    key={i}
+                    className="text-xs px-2 py-0.5 rounded-full"
+                    style={{ backgroundColor: 'var(--muted)', color: 'var(--muted-foreground)' }}
+                  >
+                    [{i + 1}] {source}
+                  </span>
+                ))}
+              </div>
+            )}
           </div>
         )}
       </div>
