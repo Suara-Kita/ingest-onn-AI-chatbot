@@ -12,6 +12,7 @@ export default function Home() {
   const [isLoading, setIsLoading] = useState(false)
 
   const sendMessage = useCallback(async (text: string) => {
+    if (isLoading) return
     const userMessage: Message = {
       id: crypto.randomUUID(),
       role: 'user',
@@ -67,10 +68,11 @@ export default function Home() {
         </span>
       </header>
 
-      {/* Messages / empty state */}
+      {/* Messages / empty state — single scroll owner */}
       <div
         style={{
           flex: 1,
+          minHeight: 0,
           overflowY: 'auto',
           padding: messages.length === 0 ? 0 : '32px 0',
           display: 'flex',

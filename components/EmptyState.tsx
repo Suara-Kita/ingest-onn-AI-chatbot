@@ -131,12 +131,13 @@ export default function EmptyState({ onSelect }: EmptyStateProps) {
       </p>
 
       {/* Suggestion cards */}
-      <div style={{ width: '100%', maxWidth: '720px', display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '12px' }}>
+      <div style={{ width: '100%', maxWidth: '720px', display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(180px, 1fr))', gap: '12px' }}>
         {CARDS.map(card => (
           <button
             key={card.title}
             type="button"
             onClick={() => onSelect(card.question)}
+            className="card-btn"
             style={{
               textAlign: 'left',
               background: '#ffffff',
@@ -144,19 +145,6 @@ export default function EmptyState({ onSelect }: EmptyStateProps) {
               borderRadius: '12px',
               padding: '14px 16px 16px',
               cursor: 'pointer',
-              transition: 'border-color 0.2s, box-shadow 0.2s, transform 0.15s',
-            }}
-            onMouseEnter={e => {
-              const el = e.currentTarget
-              el.style.borderColor = 'rgba(44,111,247,0.35)'
-              el.style.boxShadow = '0 4px 16px rgba(44,111,247,0.1)'
-              el.style.transform = 'translateY(-1px)'
-            }}
-            onMouseLeave={e => {
-              const el = e.currentTarget
-              el.style.borderColor = 'rgba(44,111,247,0.14)'
-              el.style.boxShadow = 'none'
-              el.style.transform = 'translateY(0)'
             }}
           >
             <span style={{ display: 'flex', marginBottom: '12px', color: '#2C6FF7' }}>

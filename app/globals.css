@@ -16,12 +16,9 @@
   --background: #F5F8FF;
   --foreground: #1A1F36;
   --primary: #2C6FF7;
-  --primary-gradient: linear-gradient(135deg, #2C6FF7, #5B9BFF);
   --primary-foreground: #ffffff;
   --muted-foreground: rgba(44, 80, 160, 0.45);
   --border: rgba(44, 111, 247, 0.18);
-  --card-bg: #ffffff;
-  --input-bg: #ffffff;
 }
 
 *, ::backdrop, ::before, ::after {
@@ -62,4 +59,13 @@ button, textarea, input {
 
 .animate-fade-up {
   animation: fadeUp 0.6s ease both;
+}
+
+.card-btn {
+  transition: border-color 0.2s, box-shadow 0.2s, transform 0.15s;
+}
+.card-btn:hover {
+  border-color: rgba(44, 111, 247, 0.35) !important;
+  box-shadow: 0 4px 16px rgba(44, 111, 247, 0.1);
+  transform: translateY(-1px);
 }

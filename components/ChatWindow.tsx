@@ -19,7 +19,7 @@ export default function ChatWindow({ messages, isLoading }: ChatWindowProps) {
   }, [messages.length, isLoading])
 
   return (
-    <div className="flex-1 overflow-y-auto px-4 pt-6 pb-2">
+    <div className="px-4 pt-6 pb-2 max-w-[720px] w-full mx-auto">
       {messages.map(message => (
         <MessageBubble key={message.id} message={message} />
       ))}

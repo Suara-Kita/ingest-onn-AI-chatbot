@@ -43,7 +43,7 @@ export default function InputBar({ onSend, isLoading }: InputBarProps) {
         }}
       >
         <textarea
-          placeholder="Message Onn AI…"
+          placeholder="Tanya sesuatu... / Ask something.."
           rows={1}
           value={value}
           onChange={e => setValue(e.target.value)}

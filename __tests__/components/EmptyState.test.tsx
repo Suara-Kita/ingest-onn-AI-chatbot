@@ -3,9 +3,9 @@ import { render, screen, fireEvent } from '@testing-library/react'
 import EmptyState from '@/components/EmptyState'
 
 describe('EmptyState', () => {
-  it('renders the Hello heading', () => {
+  it('renders the main heading', () => {
     render(<EmptyState onSelect={jest.fn()} />)
-    expect(screen.getByRole('heading', { name: /hello/i, level: 1 })).toBeInTheDocument()
+    expect(screen.getByText(/apa yang boleh saya bantu/i)).toBeInTheDocument()
   })
 
   it('renders exactly 6 suggestion cards', () => {
