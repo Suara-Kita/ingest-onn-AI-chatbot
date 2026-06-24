@@ -55,38 +55,42 @@ export default function Home() {
   }, [])
 
   return (
-    <div className="flex flex-col h-screen" style={{ backgroundColor: 'var(--background)' }}>
+    <div className="flex flex-col h-screen" style={{ background: 'var(--background)', fontFamily: 'var(--font-plus-jakarta), system-ui, sans-serif', color: 'var(--foreground)' }}>
+
       {/* Header */}
-      <header className="flex justify-center items-center px-6 py-5 flex-shrink-0">
-        <h1
-          className="text-3xl sm:text-4xl font-bold tracking-tight"
-          style={{ color: 'var(--foreground)' }}
-        >
-          Onn <span style={{ color: 'var(--primary)' }}>AI</span>
-        </h1>
+      <header style={{ flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '20px 32px', borderBottom: '1px solid rgba(44,111,247,0.1)' }}>
+        <span style={{ fontFamily: 'var(--font-syne), sans-serif', fontSize: '18px', fontWeight: 800, letterSpacing: '-0.3px', color: '#1A1F36' }}>
+          Onn <span style={{ color: '#2C6FF7' }}>AI</span>
+        </span>
+        <span style={{ fontSize: '11px', fontWeight: 500, color: 'rgba(44,111,247,0.4)', letterSpacing: '1.5px', textTransform: 'uppercase' }}>
+          Beta
+        </span>
       </header>
 
-      {/* Chat area */}
-      <main
-        className={`flex-1 flex flex-col overflow-hidden px-4 items-center ${
-          messages.length === 0 ? 'justify-center' : ''
-        }`}
+      {/* Messages / empty state */}
+      <div
+        style={{
+          flex: 1,
+          overflowY: 'auto',
+          padding: messages.length === 0 ? 0 : '32px 0',
+          display: 'flex',
+          flexDirection: 'column',
+          scrollbarWidth: 'thin',
+          scrollbarColor: 'rgba(44,111,247,0.2) transparent',
+        }}
       >
-        <div className="w-full max-w-[660px] flex flex-col flex-1 min-h-0">
-          {messages.length === 0 ? (
-            <EmptyState onSelect={sendMessage} />
-          ) : (
-            <ChatWindow messages={messages} isLoading={isLoading} />
-          )}
-        </div>
-      </main>
+        {messages.length === 0 ? (
+          <EmptyState onSelect={sendMessage} />
+        ) : (
+          <ChatWindow messages={messages} isLoading={isLoading} />
+        )}
+      </div>
 
-      {/* Footer / input */}
-      <footer className="flex flex-col items-center px-4 pb-6 flex-shrink-0">
-        <div className="w-full max-w-[660px]">
-          <InputBar onSend={sendMessage} isLoading={isLoading} />
-        </div>
-      </footer>
+      {/* Input area */}
+      <div style={{ flexShrink: 0, padding: '20px 24px 28px' }}>
+        <InputBar onSend={sendMessage} isLoading={isLoading} />
+      </div>
+
     </div>
   )
 }

@@ -25,38 +25,75 @@ export default function InputBar({ onSend, isLoading }: InputBarProps) {
     }
   }
 
+  const hasValue = value.trim().length > 0
+
   return (
-    <div className="pb-2">
+    <div style={{ maxWidth: '720px', margin: '0 auto' }}>
       <div
-        className="flex items-center gap-2.5 rounded-full border pl-5 pr-2 py-2 overflow-hidden"
-        style={{ backgroundColor: 'var(--secondary)', borderColor: 'var(--border)' }}
+        style={{
+          display: 'flex',
+          alignItems: 'flex-end',
+          gap: '10px',
+          background: '#fff',
+          border: '1px solid rgba(44,111,247,0.18)',
+          borderRadius: '16px',
+          padding: '10px 10px 10px 18px',
+          boxShadow: '0 2px 12px rgba(44,111,247,0.06)',
+          transition: 'border-color 0.2s',
+        }}
       >
         <textarea
-          className="flex-1 resize-none border-none outline-none ring-0 focus:ring-0 bg-transparent text-sm placeholder:opacity-50 min-h-[24px] max-h-[120px] py-1.5 disabled:opacity-50"
-          style={{ color: 'var(--foreground)' }}
-          placeholder="Tanya sesuatu... / Ask something.."
+          placeholder="Message Onn AI…"
           rows={1}
           value={value}
           onChange={e => setValue(e.target.value)}
           onKeyDown={handleKeyDown}
           disabled={isLoading}
+          style={{
+            flex: 1,
+            background: 'transparent',
+            border: 'none',
+            outline: 'none',
+            fontFamily: 'var(--font-plus-jakarta), system-ui, sans-serif',
+            fontSize: '14px',
+            fontWeight: 400,
+            color: '#1A1F36',
+            resize: 'none',
+            lineHeight: 1.6,
+            maxHeight: '140px',
+            overflowY: 'auto',
+            padding: '4px 0',
+            scrollbarWidth: 'thin',
+            scrollbarColor: 'rgba(44,111,247,0.2) transparent',
+          }}
         />
         <button
           type="button"
           onClick={handleSend}
-          disabled={!value.trim() || isLoading}
+          disabled={!hasValue || isLoading}
           aria-label="Send message"
-          className="border-none w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0 transition-opacity disabled:opacity-40 disabled:cursor-not-allowed"
-          style={{ backgroundColor: '#0f172a' }}
+          style={{
+            flexShrink: 0,
+            width: '38px',
+            height: '38px',
+            borderRadius: '10px',
+            background: 'linear-gradient(135deg, #2C6FF7, #5B9BFF)',
+            border: 'none',
+            cursor: hasValue && !isLoading ? 'pointer' : 'not-allowed',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            opacity: hasValue && !isLoading ? 1 : 0.4,
+            transition: 'opacity 0.2s, transform 0.15s',
+          }}
         >
-          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth={2.4} strokeLinecap="round" strokeLinejoin="round">
-            <line x1="12" y1="19" x2="12" y2="5" />
-            <polyline points="5 12 12 5 19 12" />
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M2 8h12M9 3l5 5-5 5" stroke="white" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
         </button>
       </div>
-      <p className="text-xs mt-2 text-center" style={{ color: 'var(--muted-foreground)' }}>
-        Enter untuk hantar · Shift+Enter untuk baris baru
+      <p style={{ textAlign: 'center', fontSize: '11px', color: 'rgba(44,80,160,0.3)', marginTop: '10px', fontWeight: 400 }}>
+        Onn AI can make mistakes. Use your judgment.
       </p>
     </div>
   )

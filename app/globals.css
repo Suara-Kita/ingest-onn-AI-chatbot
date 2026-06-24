@@ -4,39 +4,24 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --color-card: var(--card);
-  --color-card-foreground: var(--card-foreground);
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
-  --color-secondary: var(--secondary);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
-  --color-accent: var(--accent);
-  --color-accent-foreground: var(--accent-foreground);
   --color-border: var(--border);
-  --color-input: var(--input);
-  --color-ring: var(--ring);
-  --font-sans: var(--font-inter-variable), system-ui, sans-serif;
-  --radius: 0.625rem;
+  --font-sans: var(--font-plus-jakarta), system-ui, sans-serif;
+  --font-display: var(--font-syne), system-ui, sans-serif;
 }
 
 :root {
-  --background: #ffffff;
-  --foreground: #1e293b;
-  --card: #ffffff;
-  --card-foreground: #1e293b;
-  --primary: #2563eb;
+  --background: #F5F8FF;
+  --foreground: #1A1F36;
+  --primary: #2C6FF7;
+  --primary-gradient: linear-gradient(135deg, #2C6FF7, #5B9BFF);
   --primary-foreground: #ffffff;
-  --secondary: #f4f6f9;
-  --secondary-foreground: #1e293b;
-  --muted: #f4f6f9;
-  --muted-foreground: #94a3b8;
-  --accent: #eff6ff;
-  --accent-foreground: #1e293b;
-  --border: #e8ebf0;
-  --input: #e8ebf0;
-  --ring: #94a3b8;
+  --muted-foreground: rgba(44, 80, 160, 0.45);
+  --border: rgba(44, 111, 247, 0.18);
+  --card-bg: #ffffff;
+  --input-bg: #ffffff;
 }
 
 *, ::backdrop, ::before, ::after {
@@ -49,7 +34,7 @@
 body {
   background-color: var(--background);
   color: var(--foreground);
-  font-family: var(--font-inter-variable), system-ui, sans-serif;
+  font-family: var(--font-plus-jakarta), system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -58,5 +43,23 @@ button, textarea, input {
   -webkit-appearance: none;
   appearance: none;
   -webkit-tap-highlight-color: transparent;
-  border-radius: inherit;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.3; }
+  50%       { opacity: 1; }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+.animate-fade-up {
+  animation: fadeUp 0.6s ease both;
 }

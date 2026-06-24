@@ -12,7 +12,7 @@ interface CardItem {
 
 function HeartIcon() {
   return (
-    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
       <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
     </svg>
   )
@@ -20,7 +20,7 @@ function HeartIcon() {
 
 function BriefcaseIcon() {
   return (
-    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
       <rect x="2" y="7" width="20" height="14" rx="2" />
       <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
     </svg>
@@ -29,7 +29,7 @@ function BriefcaseIcon() {
 
 function HomeIcon() {
   return (
-    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
       <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
       <polyline points="9 22 9 12 15 12 15 22" />
     </svg>
@@ -38,7 +38,7 @@ function HomeIcon() {
 
 function UsersIcon() {
   return (
-    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
       <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
       <circle cx="9" cy="7" r="4" />
       <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
@@ -49,7 +49,7 @@ function UsersIcon() {
 
 function GlobeIcon() {
   return (
-    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
       <circle cx="12" cy="12" r="10" />
       <line x1="2" y1="12" x2="22" y2="12" />
       <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
@@ -59,7 +59,7 @@ function GlobeIcon() {
 
 function ChartIcon() {
   return (
-    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
       <polyline points="3 17 9 11 13 15 21 7" />
       <polyline points="14 7 21 7 21 14" />
     </svg>
@@ -111,50 +111,65 @@ interface EmptyStateProps {
 
 export default function EmptyState({ onSelect }: EmptyStateProps) {
   return (
-    <div className="flex-1 flex flex-col items-center justify-center px-4">
-      <div className="w-full max-w-[660px]">
-        <h1
-          className="text-3xl sm:text-4xl font-bold tracking-tight"
-          style={{
-            backgroundImage: 'linear-gradient(90deg, #2563eb, #60a5fa)',
-            WebkitBackgroundClip: 'text',
-            backgroundClip: 'text',
-            color: 'transparent',
-          }}
-        >
-          Hello
-        </h1>
-        <h2
-          className="text-xl sm:text-2xl font-semibold tracking-tight mt-0.5"
-          style={{ color: '#cbd5e1' }}
-        >
-          Apa yang anda ingin tahu tentang Sekijang hari ini?
-        </h2>
+    <div
+      className="animate-fade-up"
+      style={{
+        flex: 1,
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: '40px 24px',
+      }}
+    >
+      {/* Heading */}
+      <p style={{ fontFamily: 'var(--font-syne), sans-serif', fontSize: '22px', fontWeight: 700, color: '#1A1F36', marginBottom: '8px', letterSpacing: '-0.5px' }}>
+        Apa yang boleh saya bantu?
+      </p>
+      <p style={{ fontSize: '13px', color: 'rgba(44,80,160,0.45)', fontWeight: 400, textAlign: 'center', maxWidth: '280px', lineHeight: 1.6, marginBottom: '40px' }}>
+        Tanya apa sahaja tentang Sekijang. Saya Onn AI — pembantu anda.
+      </p>
 
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-8">
-          {CARDS.map(card => (
-            <button
-              key={card.title}
-              type="button"
-              onClick={() => onSelect(card.question)}
-              className="text-left rounded-2xl border p-4 cursor-pointer transition-[box-shadow,transform] duration-150 hover:-translate-y-0.5 hover:shadow-lg"
-              style={{
-                borderColor: 'var(--border)',
-                backgroundImage: 'linear-gradient(155deg, #ffffff 40%, #eff6ff)',
-              }}
-            >
-              <span className="flex mb-10" style={{ color: 'var(--primary)' }}>
-                {card.icon}
-              </span>
-              <div className="text-sm font-semibold mb-1.5" style={{ color: 'var(--foreground)' }}>
-                {card.title}
-              </div>
-              <div className="text-xs leading-relaxed" style={{ color: 'var(--muted-foreground)' }}>
-                {card.desc}
-              </div>
-            </button>
-          ))}
-        </div>
+      {/* Suggestion cards */}
+      <div style={{ width: '100%', maxWidth: '720px', display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '12px' }}>
+        {CARDS.map(card => (
+          <button
+            key={card.title}
+            type="button"
+            onClick={() => onSelect(card.question)}
+            style={{
+              textAlign: 'left',
+              background: '#ffffff',
+              border: '1px solid rgba(44,111,247,0.14)',
+              borderRadius: '12px',
+              padding: '14px 16px 16px',
+              cursor: 'pointer',
+              transition: 'border-color 0.2s, box-shadow 0.2s, transform 0.15s',
+            }}
+            onMouseEnter={e => {
+              const el = e.currentTarget
+              el.style.borderColor = 'rgba(44,111,247,0.35)'
+              el.style.boxShadow = '0 4px 16px rgba(44,111,247,0.1)'
+              el.style.transform = 'translateY(-1px)'
+            }}
+            onMouseLeave={e => {
+              const el = e.currentTarget
+              el.style.borderColor = 'rgba(44,111,247,0.14)'
+              el.style.boxShadow = 'none'
+              el.style.transform = 'translateY(0)'
+            }}
+          >
+            <span style={{ display: 'flex', marginBottom: '12px', color: '#2C6FF7' }}>
+              {card.icon}
+            </span>
+            <div style={{ fontSize: '13px', fontWeight: 600, color: '#1A1F36', marginBottom: '4px' }}>
+              {card.title}
+            </div>
+            <div style={{ fontSize: '11px', lineHeight: 1.5, color: 'rgba(44,80,160,0.5)' }}>
+              {card.desc}
+            </div>
+          </button>
+        ))}
       </div>
     </div>
   )

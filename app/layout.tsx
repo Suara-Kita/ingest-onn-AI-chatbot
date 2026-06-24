@@ -1,9 +1,19 @@
 // app/layout.tsx
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import { Plus_Jakarta_Sans, Syne } from 'next/font/google'
 import './globals.css'
 
-const inter = Inter({ subsets: ['latin'], variable: '--font-inter-variable' })
+const plusJakarta = Plus_Jakarta_Sans({
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '600'],
+  variable: '--font-plus-jakarta',
+})
+
+const syne = Syne({
+  subsets: ['latin'],
+  weight: ['700', '800'],
+  variable: '--font-syne',
+})
 
 export const metadata: Metadata = {
   title: 'Onn AI — Pembantu Kawasan Sekijang',
@@ -12,7 +22,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="ms" className={inter.variable}>
+    <html lang="ms" className={`${plusJakarta.variable} ${syne.variable}`}>
       <body>{children}</body>
     </html>
   )
