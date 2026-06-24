@@ -10,4 +10,13 @@ const config: Config = {
   setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
 }
 
-export default createJestConfig(config)
+export default async () => {
+  const nextConfig = await createJestConfig(config)()
+  // next/jest's default transformIgnorePatterns blocks the entire ESM-only
+  // markdown ecosystem (react-markdown + its remark/rehype/unist/mdast/
+  // micromark/hast/vfile transitive deps) used by MessageBubble. That tree
+  // is large and changes with every dependency bump, so rather than
+  // enumerate each package, allow node_modules to be transformed entirely.
+  nextConfig.transformIgnorePatterns = ['^.+\\.module\\.(css|sass|scss)$']
+  return nextConfig
+}
