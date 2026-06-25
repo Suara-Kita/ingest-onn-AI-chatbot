@@ -6,7 +6,7 @@ import AIAvatar from './AIAvatar'
 export default function LoadingBubble() {
   return (
     <div
-      style={{ display: 'flex', alignItems: 'flex-end', gap: '10px' }}
+      style={{ display: 'flex', alignItems: 'flex-start', gap: '10px' }}
       aria-label="Loading response"
     >
       <AIAvatar />

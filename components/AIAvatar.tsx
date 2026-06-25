@@ -1,5 +1,7 @@
 // components/AIAvatar.tsx
-export default function AIAvatar() {
+import type { CSSProperties } from 'react'
+
+export default function AIAvatar({ style }: { style?: CSSProperties } = {}) {
   return (
     <div
       style={{
@@ -11,6 +13,7 @@ export default function AIAvatar() {
         alignItems: 'center',
         justifyContent: 'center',
         flexShrink: 0,
+        ...style,
       }}
     >
       <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
