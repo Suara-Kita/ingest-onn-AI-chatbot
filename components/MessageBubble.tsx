@@ -4,6 +4,7 @@
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import { Message } from '@/lib/types'
+import AIAvatar from './AIAvatar'
 
 interface MessageBubbleProps {
   message: Message
@@ -13,27 +14,38 @@ export default function MessageBubble({ message }: MessageBubbleProps) {
   const isUser = message.role === 'user'
 
   return (
-    <div className={`flex mb-4 ${isUser ? 'justify-end' : 'justify-start'}`}>
-      {!isUser && (
-        <div
-          className="w-7 h-7 rounded-full flex items-center justify-center mr-2 mt-1 flex-shrink-0"
-          style={{ backgroundColor: 'var(--primary)' }}
-        >
-          <span className="text-white text-xs font-bold select-none">O</span>
-        </div>
-      )}
+    <div
+      style={{
+        display: 'flex',
+        justifyContent: isUser ? 'flex-end' : 'flex-start',
+        gap: '10px',
+        alignItems: 'flex-end',
+      }}
+    >
+      {!isUser && <AIAvatar />}
 
       <div
-        className={`max-w-[80%] rounded-2xl px-4 py-3 text-sm ${
-          isUser ? 'rounded-tr-sm' : 'rounded-tl-sm shadow-sm border'
-        }`}
+        className="text-sm"
         style={
           isUser
-            ? { backgroundColor: 'var(--primary)', color: 'var(--primary-foreground)' }
+            ? {
+                maxWidth: '68%',
+                backgroundColor: '#2C6FF7',
+                color: '#ffffff',
+                padding: '11px 16px',
+                borderRadius: '16px 16px 4px 16px',
+                lineHeight: 1.65,
+                boxShadow: '0 2px 8px rgba(44,111,247,0.2)',
+              }
             : {
-                backgroundColor: 'var(--card)',
-                color: 'var(--card-foreground)',
-                borderColor: 'var(--border)',
+                maxWidth: '68%',
+                backgroundColor: '#ffffff',
+                color: '#1A1F36',
+                padding: '11px 16px',
+                borderRadius: '16px 16px 16px 4px',
+                lineHeight: 1.65,
+                boxShadow: '0 2px 12px rgba(44,111,247,0.08)',
+                border: '1px solid rgba(44,111,247,0.08)',
               }
         }
       >
@@ -50,7 +62,7 @@ export default function MessageBubble({ message }: MessageBubbleProps) {
                   <span
                     key={i}
                     className="text-xs px-2 py-0.5 rounded-full"
-                    style={{ backgroundColor: 'var(--muted)', color: 'var(--muted-foreground)' }}
+                    style={{ backgroundColor: '#F5F8FF', color: 'rgba(44,80,160,0.45)' }}
                   >
                     [{i + 1}] {source}
                   </span>

@@ -56,7 +56,7 @@ export default function Home() {
   }, [])
 
   return (
-    <div className="flex flex-col h-screen" style={{ background: 'var(--background)', fontFamily: 'var(--font-plus-jakarta), system-ui, sans-serif', color: 'var(--foreground)' }}>
+    <div className="flex flex-col h-screen" style={{ height: '100dvh', background: 'var(--background)', fontFamily: 'var(--font-plus-jakarta), system-ui, sans-serif', color: 'var(--foreground)' }}>
 
       {/* Header */}
       <header style={{ flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '20px 32px', borderBottom: '1px solid rgba(44,111,247,0.1)' }}>
@@ -74,9 +74,6 @@ export default function Home() {
           flex: 1,
           minHeight: 0,
           overflowY: 'auto',
-          padding: messages.length === 0 ? 0 : '32px 0',
-          display: 'flex',
-          flexDirection: 'column',
           scrollbarWidth: 'thin',
           scrollbarColor: 'rgba(44,111,247,0.2) transparent',
         }}
@@ -89,7 +86,7 @@ export default function Home() {
       </div>
 
       {/* Input area */}
-      <div style={{ flexShrink: 0, padding: '20px 24px 28px' }}>
+      <div style={{ flexShrink: 0, padding: '16px 24px', paddingBottom: 'calc(24px + env(safe-area-inset-bottom, 0px))' }}>
         <InputBar onSend={sendMessage} isLoading={isLoading} />
       </div>
 

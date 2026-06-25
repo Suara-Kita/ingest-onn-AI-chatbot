@@ -1,5 +1,5 @@
 // app/layout.tsx
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import { Plus_Jakarta_Sans, Syne } from 'next/font/google'
 import './globals.css'
 
@@ -14,6 +14,12 @@ const syne = Syne({
   weight: ['700', '800'],
   variable: '--font-syne',
 })
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  viewportFit: 'cover',
+}
 
 export const metadata: Metadata = {
   title: 'Onn AI — Pembantu Kawasan Sekijang',

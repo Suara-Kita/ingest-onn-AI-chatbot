@@ -114,7 +114,7 @@ export default function EmptyState({ onSelect }: EmptyStateProps) {
     <div
       className="animate-fade-up"
       style={{
-        flex: 1,
+        minHeight: '100%',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
@@ -123,7 +123,7 @@ export default function EmptyState({ onSelect }: EmptyStateProps) {
       }}
     >
       {/* Heading */}
-      <p style={{ fontFamily: 'var(--font-syne), sans-serif', fontSize: '22px', fontWeight: 700, color: '#1A1F36', marginBottom: '8px', letterSpacing: '-0.5px' }}>
+      <p style={{ fontFamily: 'var(--font-syne), sans-serif', fontSize: '22px', fontWeight: 700, color: '#1A1F36', marginBottom: '8px', letterSpacing: '-0.5px', textAlign: 'center' }}>
         Apa yang boleh saya bantu?
       </p>
       <p style={{ fontSize: '13px', color: 'rgba(44,80,160,0.45)', fontWeight: 400, textAlign: 'center', maxWidth: '280px', lineHeight: 1.6, marginBottom: '40px' }}>
@@ -131,7 +131,7 @@ export default function EmptyState({ onSelect }: EmptyStateProps) {
       </p>
 
       {/* Suggestion cards */}
-      <div style={{ width: '100%', maxWidth: '720px', display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(180px, 1fr))', gap: '12px' }}>
+      <div style={{ width: '100%', maxWidth: '720px', display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(150px, 1fr))', gap: '12px' }}>
         {CARDS.map(card => (
           <button
             key={card.title}

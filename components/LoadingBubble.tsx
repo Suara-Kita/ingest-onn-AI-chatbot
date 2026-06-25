@@ -1,35 +1,41 @@
 // components/LoadingBubble.tsx
 'use client'
 
+import AIAvatar from './AIAvatar'
+
 export default function LoadingBubble() {
   return (
-    <div className="flex justify-start mb-4" aria-label="Loading response">
+    <div
+      style={{ display: 'flex', alignItems: 'flex-end', gap: '10px' }}
+      aria-label="Loading response"
+    >
+      <AIAvatar />
       <div
-        className="w-7 h-7 rounded-full flex items-center justify-center mr-2 mt-1 flex-shrink-0"
-        style={{ backgroundColor: 'var(--primary)' }}
-      >
-        <span className="text-white text-xs font-bold select-none">O</span>
-      </div>
-      <div
-        className="rounded-2xl rounded-tl-sm px-4 py-3 border shadow-sm"
         style={{
-          backgroundColor: 'var(--card)',
-          borderColor: 'var(--border)',
+          backgroundColor: '#ffffff',
+          padding: '12px 16px',
+          borderRadius: '16px 16px 16px 4px',
+          boxShadow: '0 2px 12px rgba(44,111,247,0.08)',
+          border: '1px solid rgba(44,111,247,0.08)',
+          display: 'flex',
+          gap: '5px',
+          alignItems: 'center',
         }}
       >
-        <div className="flex gap-1.5 items-center h-5">
-          {[0, 150, 300].map((delay) => (
-            <span
-              key={delay}
-              className="w-2 h-2 rounded-full animate-bounce"
-              style={{
-                backgroundColor: 'var(--muted-foreground)',
-                opacity: 0.4,
-                animationDelay: `${delay}ms`,
-              }}
-            />
-          ))}
-        </div>
+        {[0, 200, 400].map((delay) => (
+          <span
+            key={delay}
+            style={{
+              width: '6px',
+              height: '6px',
+              borderRadius: '50%',
+              backgroundColor: '#2C6FF7',
+              display: 'inline-block',
+              animation: `dot-bounce 1.2s ease-in-out infinite`,
+              animationDelay: `${delay}ms`,
+            }}
+          />
+        ))}
       </div>
     </div>
   )
