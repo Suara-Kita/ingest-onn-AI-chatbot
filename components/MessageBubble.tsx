@@ -1,10 +1,22 @@
-// components/MessageBubble.tsx
 'use client'
 
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
+import rehypeRaw from 'rehype-raw'
 import { Message } from '@/lib/types'
 import AIAvatar from './AIAvatar'
+
+// Convert inline [n] / [1, 2] citations to <sup> — body text only, not the references list
+function injectCitationSups(content: string): string {
+  const refHeadingIdx = content.search(/\n## (?:Rujukan|References)\b/i)
+  const body = refHeadingIdx === -1 ? content : content.slice(0, refHeadingIdx)
+  const refs = refHeadingIdx === -1 ? '' : content.slice(refHeadingIdx)
+  const processed = body.replace(
+    /\[(\d+(?:,\s*\d+)*)\]/g,
+    (_, n) => `<sup class="ref">[${n}]</sup>`,
+  )
+  return processed + refs
+}
 
 interface MessageBubbleProps {
   message: Message
@@ -41,28 +53,162 @@ export default function MessageBubble({ message }: MessageBubbleProps) {
                 flex: 1,
                 backgroundColor: '#ffffff',
                 color: '#1A1F36',
-                padding: '14px 18px',
+                padding: '18px 20px',
                 borderRadius: '16px 16px 16px 4px',
-                lineHeight: 1.75,
+                lineHeight: 1.7,
                 boxShadow: '0 2px 12px rgba(44,111,247,0.08)',
                 border: '1px solid rgba(44,111,247,0.08)',
               }
         }
       >
         {isUser ? (
-          <p>{message.content}</p>
+          <p style={{ margin: 0 }}>{message.content}</p>
         ) : (
-          <div className="[&>*:first-child]:mt-0 [&>*:last-child]:mb-0 [&_p]:mb-3 [&_p]:leading-relaxed [&_ul]:mb-3 [&_ul]:pl-5 [&_ul]:list-disc [&_ol]:mb-3 [&_ol]:pl-5 [&_ol]:list-decimal [&_li]:mb-2 [&_li]:leading-relaxed [&_h1]:text-base [&_h1]:font-bold [&_h1]:mb-2 [&_h1]:mt-4 [&_h2]:text-sm [&_h2]:font-bold [&_h2]:mb-2 [&_h2]:mt-4 [&_h3]:text-sm [&_h3]:font-semibold [&_h3]:mb-1 [&_h3]:mt-3 [&_strong]:font-semibold [&_table]:w-full [&_table]:border-collapse [&_table]:text-xs [&_table]:mb-3 [&_td]:border [&_td]:px-2 [&_td]:py-1 [&_th]:border [&_th]:px-2 [&_th]:py-1 [&_th]:font-semibold [&_a]:underline [&_a]:text-blue-600">
-            <ReactMarkdown remarkPlugins={[remarkGfm]}>
-              {message.content}
+          <div>
+            <ReactMarkdown
+              remarkPlugins={[remarkGfm]}
+              rehypePlugins={[rehypeRaw]}
+              components={{
+                h2: ({ children }) => (
+                  <h2
+                    style={{
+                      fontSize: '13px',
+                      fontWeight: 700,
+                      color: '#1A1F36',
+                      marginTop: '22px',
+                      marginBottom: '8px',
+                      paddingBottom: '6px',
+                      borderBottom: '1px solid rgba(44,111,247,0.12)',
+                      letterSpacing: '-0.1px',
+                    }}
+                  >
+                    {children}
+                  </h2>
+                ),
+                h3: ({ children }) => (
+                  <h3
+                    style={{
+                      fontSize: '11px',
+                      fontWeight: 700,
+                      color: '#2C6FF7',
+                      marginTop: '16px',
+                      marginBottom: '6px',
+                      textTransform: 'uppercase',
+                      letterSpacing: '0.5px',
+                    }}
+                  >
+                    {children}
+                  </h3>
+                ),
+                p: ({ children }) => (
+                  <p style={{ marginBottom: '10px', lineHeight: 1.75, color: '#1A1F36' }}>
+                    {children}
+                  </p>
+                ),
+                ul: ({ children }) => (
+                  <ul style={{ paddingLeft: '18px', marginBottom: '10px', listStyleType: 'disc' }}>
+                    {children}
+                  </ul>
+                ),
+                ol: ({ children }) => (
+                  <ol style={{ paddingLeft: '18px', marginBottom: '10px', listStyleType: 'decimal' }}>
+                    {children}
+                  </ol>
+                ),
+                li: ({ children }) => (
+                  <li style={{ marginBottom: '5px', lineHeight: 1.65, color: '#1A1F36' }}>
+                    {children}
+                  </li>
+                ),
+                strong: ({ children }) => (
+                  <strong style={{ fontWeight: 700, color: '#0F1B36' }}>{children}</strong>
+                ),
+                blockquote: ({ children }) => (
+                  <blockquote
+                    style={{
+                      borderLeft: '3px solid #2C6FF7',
+                      paddingLeft: '12px',
+                      paddingTop: '6px',
+                      paddingBottom: '6px',
+                      margin: '12px 0',
+                      backgroundColor: 'rgba(44,111,247,0.04)',
+                      borderRadius: '0 6px 6px 0',
+                      color: '#334466',
+                    }}
+                  >
+                    {children}
+                  </blockquote>
+                ),
+                hr: () => (
+                  <hr
+                    style={{
+                      border: 'none',
+                      borderTop: '1px solid rgba(44,111,247,0.12)',
+                      margin: '16px 0',
+                    }}
+                  />
+                ),
+                table: ({ children }) => (
+                  <div style={{ overflowX: 'auto', marginBottom: '12px' }}>
+                    <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '11.5px' }}>
+                      {children}
+                    </table>
+                  </div>
+                ),
+                th: ({ children }) => (
+                  <th
+                    style={{
+                      border: '1px solid rgba(44,111,247,0.15)',
+                      padding: '6px 10px',
+                      backgroundColor: 'rgba(44,111,247,0.05)',
+                      fontWeight: 600,
+                      textAlign: 'left',
+                    }}
+                  >
+                    {children}
+                  </th>
+                ),
+                td: ({ children }) => (
+                  <td
+                    style={{
+                      border: '1px solid rgba(44,111,247,0.12)',
+                      padding: '5px 10px',
+                    }}
+                  >
+                    {children}
+                  </td>
+                ),
+                a: ({ children, href }) => (
+                  <a href={href} style={{ color: '#2C6FF7', textDecoration: 'underline' }}>
+                    {children}
+                  </a>
+                ),
+              }}
+            >
+              {injectCitationSups(message.content)}
             </ReactMarkdown>
+
             {message.sources && message.sources.length > 0 && (
-              <div className="flex flex-wrap gap-1.5 mt-2 pt-2 border-t" style={{ borderColor: 'var(--border)' }}>
+              <div
+                style={{
+                  display: 'flex',
+                  flexWrap: 'wrap',
+                  gap: '6px',
+                  marginTop: '8px',
+                  paddingTop: '8px',
+                  borderTop: '1px solid rgba(44,111,247,0.1)',
+                }}
+              >
                 {message.sources.map((source, i) => (
                   <span
                     key={i}
-                    className="text-xs px-2 py-0.5 rounded-full"
-                    style={{ backgroundColor: '#F5F8FF', color: 'rgba(44,80,160,0.45)' }}
+                    style={{
+                      fontSize: '11px',
+                      padding: '2px 8px',
+                      borderRadius: '999px',
+                      backgroundColor: '#F5F8FF',
+                      color: 'rgba(44,80,160,0.45)',
+                    }}
                   >
                     [{i + 1}] {source}
                   </span>
