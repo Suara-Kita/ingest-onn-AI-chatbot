@@ -3,16 +3,27 @@
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import rehypeRaw from 'rehype-raw'
+import rehypeSanitize, { defaultSchema } from 'rehype-sanitize'
 import { Message } from '@/lib/types'
 import AIAvatar from './AIAvatar'
 
-// Convert inline [n] / [1, 2] citations to <sup> — body text only, not the references list
+const _sanitizeSchema = {
+  ...defaultSchema,
+  tagNames: [...(defaultSchema.tagNames ?? []), 'sup'],
+  attributes: {
+    ...defaultSchema.attributes,
+    sup: ['className'],
+  },
+}
+
+// Convert inline [n] / [1, 2] citations to <sup> — body text only, not the references list.
+// Negative lookahead (?!\() prevents matching Markdown link syntax [n](url).
 function injectCitationSups(content: string): string {
   const refHeadingIdx = content.search(/\n## (?:Rujukan|References)\b/i)
   const body = refHeadingIdx === -1 ? content : content.slice(0, refHeadingIdx)
   const refs = refHeadingIdx === -1 ? '' : content.slice(refHeadingIdx)
   const processed = body.replace(
-    /\[(\d+(?:,\s*\d+)*)\]/g,
+    /\[(\d+(?:,\s*\d+)*)\](?!\()/g,
     (_, n) => `<sup class="ref">[${n}]</sup>`,
   )
   return processed + refs
@@ -67,7 +78,7 @@ export default function MessageBubble({ message }: MessageBubbleProps) {
           <div>
             <ReactMarkdown
               remarkPlugins={[remarkGfm]}
-              rehypePlugins={[rehypeRaw]}
+              rehypePlugins={[rehypeRaw, [rehypeSanitize, _sanitizeSchema]]}
               components={{
                 h2: ({ children }) => (
                   <h2
