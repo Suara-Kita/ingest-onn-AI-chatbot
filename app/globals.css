@@ -10,7 +10,7 @@
   --color-muted-foreground: var(--muted-foreground);
   --color-border: var(--border);
   --font-sans: var(--font-plus-jakarta), system-ui, sans-serif;
-  --font-display: var(--font-syne), system-ui, sans-serif;
+  --font-display: var(--font-anybody), system-ui, sans-serif;
 }
 
 :root {
@@ -84,4 +84,28 @@ sup.ref {
   border-color: rgba(44, 111, 247, 0.35) !important;
   box-shadow: 0 4px 16px rgba(44, 111, 247, 0.1);
   transform: translateY(-1px);
+}
+
+/* Two-column page layout */
+.page-grid {
+  display: grid;
+  grid-template-columns: 1fr 420px;
+  gap: 24px;
+  align-items: start;
+}
+
+.chat-sticky {
+  position: sticky;
+  top: calc(57px + 28px); /* header height + grid padding */
+  height: calc(100dvh - 57px - 56px); /* viewport minus header and vertical padding */
+}
+
+@media (max-width: 900px) {
+  .page-grid {
+    grid-template-columns: 1fr;
+  }
+  .chat-sticky {
+    position: static;
+    height: 600px;
+  }
 }
