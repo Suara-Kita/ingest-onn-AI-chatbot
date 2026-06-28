@@ -60,7 +60,7 @@ export default function Home() {
 
       {/* Header */}
       <header style={{ flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '20px 32px', borderBottom: '1px solid rgba(44,111,247,0.1)' }}>
-        <span style={{ fontFamily: 'var(--font-syne), sans-serif', fontSize: '18px', fontWeight: 800, letterSpacing: '-0.3px', color: '#1A1F36' }}>
+        <span style={{ fontFamily: 'var(--font-anybody), sans-serif', fontSize: '18px', fontWeight: 800, letterSpacing: '-0.3px', color: '#1A1F36' }}>
           Onn <span style={{ color: '#2C6FF7' }}>AI</span>
         </span>
         <span style={{ fontSize: '11px', fontWeight: 500, color: 'rgba(44,111,247,0.4)', letterSpacing: '1.5px', textTransform: 'uppercase' }}>

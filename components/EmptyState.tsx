@@ -87,15 +87,15 @@ const CARDS: CardItem[] = [
   },
   {
     icon: <UsersIcon />,
-    title: 'Family Support',
-    desc: 'Support for low-income families',
-    question: 'What support is available for low-income families?',
+    title: 'Sokongan Keluarga',
+    desc: 'Sokongan untuk keluarga berpendapatan rendah',
+    question: 'Apakah sokongan untuk keluarga berpendapatan rendah?',
   },
   {
     icon: <GlobeIcon />,
     title: 'JS-SEZ Johor',
-    desc: "Impact on Johor's economy & jobs",
-    question: 'What is JS-SEZ and how does it affect Johor?',
+    desc: 'Kesan kepada ekonomi & pekerjaan Johor',
+    question: 'Apa itu JS-SEZ dan bagaimana ia mempengaruhi Johor?',
   },
   {
     icon: <ChartIcon />,
@@ -123,7 +123,7 @@ export default function EmptyState({ onSelect }: EmptyStateProps) {
       }}
     >
       {/* Heading */}
-      <p style={{ fontFamily: 'var(--font-syne), sans-serif', fontSize: '22px', fontWeight: 700, color: '#1A1F36', marginBottom: '8px', letterSpacing: '-0.5px', textAlign: 'center' }}>
+      <p style={{ fontFamily: 'var(--font-anybody), sans-serif', fontSize: '22px', fontWeight: 700, color: '#1A1F36', marginBottom: '8px', letterSpacing: '-0.5px', textAlign: 'center' }}>
         Apa yang boleh saya bantu?
       </p>
       <p style={{ fontSize: '13px', color: 'rgba(44,80,160,0.45)', fontWeight: 400, textAlign: 'center', maxWidth: '280px', lineHeight: 1.6, marginBottom: '40px' }}>
