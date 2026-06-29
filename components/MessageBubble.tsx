@@ -5,7 +5,6 @@ import remarkGfm from 'remark-gfm'
 import rehypeRaw from 'rehype-raw'
 import rehypeSanitize, { defaultSchema } from 'rehype-sanitize'
 import { Message } from '@/lib/types'
-import AIAvatar from './AIAvatar'
 
 const _sanitizeSchema = {
   ...defaultSchema,
@@ -45,8 +44,6 @@ export default function MessageBubble({ message }: MessageBubbleProps) {
         alignItems: 'flex-start',
       }}
     >
-      {!isUser && <AIAvatar style={{ marginTop: '2px' }} />}
-
       <div
         className="text-sm"
         style={
@@ -62,13 +59,8 @@ export default function MessageBubble({ message }: MessageBubbleProps) {
               }
             : {
                 flex: 1,
-                backgroundColor: '#ffffff',
                 color: '#1A1F36',
-                padding: '18px 20px',
-                borderRadius: '16px 16px 16px 4px',
                 lineHeight: 1.7,
-                boxShadow: '0 2px 12px rgba(44,111,247,0.08)',
-                border: '1px solid rgba(44,111,247,0.08)',
               }
         }
       >
@@ -83,14 +75,14 @@ export default function MessageBubble({ message }: MessageBubbleProps) {
                 h2: ({ children }) => (
                   <h2
                     style={{
-                      fontSize: '13px',
+                      fontSize: '14px',
                       fontWeight: 700,
-                      color: '#1A1F36',
+                      color: '#0A0F1E',
                       marginTop: '22px',
                       marginBottom: '8px',
                       paddingBottom: '6px',
                       borderBottom: '1px solid rgba(44,111,247,0.12)',
-                      letterSpacing: '-0.1px',
+                      letterSpacing: '-0.2px',
                     }}
                   >
                     {children}
@@ -99,20 +91,19 @@ export default function MessageBubble({ message }: MessageBubbleProps) {
                 h3: ({ children }) => (
                   <h3
                     style={{
-                      fontSize: '11px',
+                      fontSize: '12px',
                       fontWeight: 700,
-                      color: '#2C6FF7',
+                      color: '#0A0F1E',
                       marginTop: '16px',
                       marginBottom: '6px',
-                      textTransform: 'uppercase',
-                      letterSpacing: '0.5px',
+                      letterSpacing: '-0.1px',
                     }}
                   >
                     {children}
                   </h3>
                 ),
                 p: ({ children }) => (
-                  <p style={{ marginBottom: '10px', lineHeight: 1.75, color: '#1A1F36' }}>
+                  <p style={{ marginBottom: '10px', lineHeight: 1.75, color: '#2D3748' }}>
                     {children}
                   </p>
                 ),

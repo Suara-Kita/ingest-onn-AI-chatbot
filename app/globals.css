@@ -127,6 +127,10 @@ sup.ref {
   .manifesto-grid {
     grid-template-columns: repeat(2, 1fr);
   }
+  .manifesto-grid > * {
+    min-width: 0;
+    overflow: hidden;
+  }
   .stats-grid {
     grid-template-columns: 1fr 1fr;
   }

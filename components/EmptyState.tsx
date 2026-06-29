@@ -130,8 +130,8 @@ export default function EmptyState({ onSelect }: EmptyStateProps) {
       <p style={{ fontFamily: 'var(--font-anybody), sans-serif', fontSize: '22px', fontWeight: 700, color: '#1A1F36', marginBottom: '8px', letterSpacing: '-0.5px', textAlign: 'center' }}>
         Apa yang boleh saya bantu?
       </p>
-      <p style={{ fontSize: '13px', color: 'rgba(44,80,160,0.45)', fontWeight: 400, textAlign: 'center', maxWidth: '280px', lineHeight: 1.6, marginBottom: '40px' }}>
-        Tanya apa sahaja tentang Sekijang. Saya Onn AI — pembantu anda.
+      <p style={{ fontSize: '13px', color: 'rgba(44,80,160,0.45)', fontWeight: 400, textAlign: 'center', whiteSpace: 'nowrap', lineHeight: 1.6, marginBottom: '40px' }}>
+        Tanya apa sahaja tentang Johor. Saya Onn AI — pembantu anda.
       </p>
 
       {/* Suggestion cards */}

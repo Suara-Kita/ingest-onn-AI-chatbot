@@ -114,6 +114,56 @@ export default function Home() {
           <StatsCard label="Penambahbaikan" value={stats.improvements} sublabel="kes diselesaikan" />
         </div>
 
+        {/* Telegram CTA */}
+        <div
+          style={{
+            background: '#fff',
+            border: '1px solid rgba(44,111,247,0.14)',
+            borderRadius: '16px',
+            padding: '20px 24px',
+            boxShadow: '0 2px 12px rgba(44,111,247,0.04)',
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '14px',
+            maxWidth: '66%',
+            margin: '0 auto',
+            width: '100%',
+          }}
+        >
+          <div>
+            <p style={{ fontSize: '14px', fontWeight: 600, color: '#1A1F36', lineHeight: 1.5, marginBottom: '4px' }}>
+              Kepada sesiapa yang mempunyai pandangan mengenai tempat anda
+            </p>
+            <p style={{ fontSize: '12px', color: 'rgba(44,80,160,0.55)', fontWeight: 400 }}>
+              Mari sembang dengan Onn AI kami
+            </p>
+          </div>
+          <a
+            href="https://t.me/onn_line_bot"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '8px',
+              background: 'linear-gradient(135deg, #2C6FF7, #5B9BFF)',
+              color: '#fff',
+              fontWeight: 600,
+              fontSize: '13px',
+              padding: '11px 20px',
+              borderRadius: '12px',
+              textDecoration: 'none',
+              boxShadow: '0 4px 16px rgba(44,111,247,0.3)',
+              alignSelf: 'flex-start',
+            }}
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12l-6.871 4.326-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.833.941z" />
+            </svg>
+            Sampaikan pandangan anda melalui Aplikasi Telegram
+          </a>
+        </div>
+
         {/* YouTube Live */}
         <div
           style={{

@@ -18,12 +18,12 @@ export default function ManifestoCard() {
     >
       <div
         style={{
-          fontSize: '10px',
-          fontWeight: 600,
-          color: 'rgba(44,111,247,0.5)',
-          letterSpacing: '1.8px',
-          textTransform: 'uppercase',
+          fontSize: '16px',
+          fontWeight: 800,
+          color: '#0A0F1E',
+          letterSpacing: '-0.3px',
           marginBottom: '10px',
+          fontFamily: 'var(--font-anybody), sans-serif',
         }}
       >
         Kenapa Sistem ini penting?
@@ -36,7 +36,7 @@ export default function ManifestoCard() {
           marginBottom: '22px',
         }}
       >
-        Bergerak ke depan dengan pendekatan moden selari dengan zaman. Kami memanfaatkan A.I untuk memastikan hala tuju ini dibina berasaskan suara sebenar rakyat dan visi kemajuan yang telus.
+        Bergerak ke depan dengan <strong style={{ color: '#0A0F1E', fontWeight: 700 }}>pendekatan moden</strong> selari dengan zaman. Kami memanfaatkan <strong style={{ color: '#0A0F1E', fontWeight: 700 }}>A.I</strong> untuk memastikan hala tuju ini dibina berasaskan <strong style={{ color: '#0A0F1E', fontWeight: 700 }}>suara sebenar rakyat</strong> dan <strong style={{ color: '#0A0F1E', fontWeight: 700 }}>visi kemajuan yang telus</strong>.
       </p>
       <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '14px' }}>
         {BULLETS.map((bullet, i) => (
@@ -58,7 +58,7 @@ export default function ManifestoCard() {
                 <path d="M2 5l2 2 4-4" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
             </span>
-            <span style={{ fontSize: '14px', lineHeight: 1.65, color: '#1A1F36' }}>{bullet}</span>
+            <span style={{ fontSize: '14px', lineHeight: 1.65, color: '#1A1F36', fontWeight: 600 }}>{bullet}</span>
           </li>
         ))}
       </ul>

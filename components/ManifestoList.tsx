@@ -111,7 +111,7 @@ export default function ManifestoList() {
               {pillar.highlights.map((h, hi) => (
                 <div key={hi} style={{ display: 'flex', gap: '6px', alignItems: 'flex-start' }}>
                   <span style={{ width: '3px', height: '3px', borderRadius: '50%', background: 'rgba(44,111,247,0.35)', flexShrink: 0, marginTop: '5px' }} />
-                  <span style={{ fontSize: '10px', lineHeight: 1.4, color: 'rgba(44,80,160,0.55)' }}>{h}</span>
+                  <span style={{ fontSize: '10px', lineHeight: 1.4, color: 'rgba(44,80,160,0.55)', wordBreak: 'break-word', minWidth: 0 }}>{h}</span>
                 </div>
               ))}
             </div>

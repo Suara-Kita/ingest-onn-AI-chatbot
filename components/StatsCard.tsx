@@ -20,12 +20,12 @@ export default function StatsCard({ label, value, sublabel }: StatsCardProps) {
     >
       <div
         style={{
-          fontSize: '10px',
-          fontWeight: 600,
-          color: 'rgba(44,111,247,0.5)',
-          letterSpacing: '1.8px',
-          textTransform: 'uppercase',
+          fontSize: '13px',
+          fontWeight: 800,
+          color: '#0A0F1E',
+          letterSpacing: '-0.2px',
           marginBottom: '12px',
+          fontFamily: 'var(--font-anybody), sans-serif',
         }}
       >
         {label}
