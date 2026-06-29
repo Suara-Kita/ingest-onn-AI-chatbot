@@ -17,6 +17,21 @@ interface Stats {
 const UNAVAILABLE =
   "Maaf, sistem tidak tersedia buat masa ini. Sila cuba lagi.\n\nSorry, the system is currently unavailable. Please try again.";
 
+function toYouTubeEmbedUrl(url: string): string {
+  try {
+    const u = new URL(url);
+    // Already an embed URL
+    if (u.pathname.startsWith("/embed/")) return url;
+    // youtu.be/VIDEO_ID
+    if (u.hostname === "youtu.be") return `https://www.youtube.com/embed${u.pathname}`;
+    // youtube.com/watch?v=VIDEO_ID
+    const v = u.searchParams.get("v");
+    if (v) return `https://www.youtube.com/embed/${v}`;
+  } catch {}
+  // Treat as bare video ID
+  return `https://www.youtube.com/embed/${url}`;
+}
+
 export default function Home() {
   const stats: Stats = { cases: 247, improvements: 12 };
   const [messages, setMessages] = useState<Message[]>([]);
@@ -176,6 +191,8 @@ export default function Home() {
             src="/onn-tanya.jpg"
             alt="Onn, tanya apa khabar?"
             fill
+            sizes="(max-width: 768px) 100vw, 50vw"
+            loading="eager"
             style={{ objectFit: "cover" }}
           />
           <div
@@ -237,7 +254,7 @@ export default function Home() {
             style={{ position: "relative", paddingBottom: "56.25%", height: 0 }}
           >
             <iframe
-              src="https://www.youtube.com/embed/yxslO3T3Hb4?autoplay=0"
+              src={toYouTubeEmbedUrl(process.env.NEXT_PUBLIC_YOUTUBE_LIVE_URL ?? "yxslO3T3Hb4")}
               title="YouTube Live"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
