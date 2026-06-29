@@ -26,7 +26,7 @@ export default function ManifestoCard() {
           marginBottom: '10px',
         }}
       >
-        Manifesto BN Sekijang
+        Manifesto BN Johor
       </div>
       <div
         style={{

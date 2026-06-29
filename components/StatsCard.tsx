@@ -9,6 +9,7 @@ interface StatsCardProps {
 export default function StatsCard({ label, value, sublabel }: StatsCardProps) {
   return (
     <div
+      className="stats-card"
       style={{
         background: '#fff',
         border: '1px solid rgba(44,111,247,0.14)',
@@ -30,6 +31,7 @@ export default function StatsCard({ label, value, sublabel }: StatsCardProps) {
         {label}
       </div>
       <div
+        className="stats-value"
         style={{
           fontSize: '52px',
           fontWeight: 800,
