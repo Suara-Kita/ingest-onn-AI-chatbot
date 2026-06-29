@@ -161,65 +161,54 @@ export default function Home() {
         {/* Telegram CTA */}
         <div
           style={{
-            background: "#fff",
-            border: "1px solid rgba(44,111,247,0.14)",
-            borderRadius: "16px",
-            padding: "20px 24px",
-            boxShadow: "0 2px 12px rgba(44,111,247,0.04)",
-            display: "flex",
-            flexDirection: "column",
-            gap: "14px",
+            position: "relative",
             maxWidth: "66%",
             margin: "0 auto",
             width: "100%",
+            borderRadius: "16px",
+            overflow: "hidden",
+            border: "1px solid rgba(44,111,247,0.14)",
+            boxShadow: "0 2px 12px rgba(44,111,247,0.04)",
+            aspectRatio: "1280 / 725",
           }}
         >
-          <div>
-            <p
-              style={{
-                fontSize: "16px",
-                fontWeight: 600,
-                color: "#1A1F36",
-                marginBottom: "4px",
-              }}
-            >
-              Sesiapa yang mempunyai pandangan mengenai tempat anda
-            </p>
-            <p
-              style={{
-                fontSize: "16px",
-                color: "rgba(44,80,160,1)",
-                fontWeight: 500,
-                marginTop: "10px",
-              }}
-            >
-              Onn, tanya apa khabar?
-            </p>
-          </div>
-          <a
-            href="https://t.me/onn_line_bot"
-            target="_blank"
-            rel="noopener noreferrer"
+          <Image
+            src="/onn-tanya.jpg"
+            alt="Onn, tanya apa khabar?"
+            fill
+            style={{ objectFit: "cover" }}
+          />
+          <div
             style={{
-              display: "inline-flex",
-              alignItems: "center",
-              gap: "8px",
-              marginTop: "10px",
-              background: "linear-gradient(135deg, #2C6FF7, #5B9BFF)",
-              color: "#fff",
-              fontWeight: 600,
-              fontSize: "16px",
-              padding: "11px 20px",
-              borderRadius: "12px",
-              textDecoration: "none",
-              alignSelf: "flex-start",
+              position: "absolute",
+              bottom: "20px",
+              left: "24px",
+              right: "24px",
             }}
           >
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12l-6.871 4.326-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.833.941z" />
-            </svg>
-            Sembang dengan Onn melalui Aplikasi Telegram
-          </a>
+            <a
+              href="https://t.me/onn_line_bot"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "8px",
+                background: "linear-gradient(135deg, #2C6FF7, #5B9BFF)",
+                color: "#fff",
+                fontWeight: 600,
+                fontSize: "16px",
+                padding: "11px 20px",
+                borderRadius: "12px",
+                textDecoration: "none",
+              }}
+            >
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12l-6.871 4.326-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.833.941z" />
+              </svg>
+              Sembang dengan Onn melalui Aplikasi Telegram
+            </a>
+          </div>
         </div>
 
         {/* YouTube Live */}
@@ -248,7 +237,7 @@ export default function Home() {
             style={{ position: "relative", paddingBottom: "56.25%", height: 0 }}
           >
             <iframe
-              src="https://www.youtube.com/embed/t_mnJZDJ2bM?autoplay=0"
+              src="https://www.youtube.com/embed/yxslO3T3Hb4?autoplay=0"
               title="YouTube Live"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
