@@ -3,152 +3,194 @@
 @plugin "@tailwindcss/typography";
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-primary: var(--primary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-border: var(--border);
-  --font-sans: var(--font-plus-jakarta), system-ui, sans-serif;
-  --font-display: var(--font-anybody), system-ui, sans-serif;
+    --color-background: var(--background);
+    --color-foreground: var(--foreground);
+    --color-primary: var(--primary);
+    --color-primary-foreground: var(--primary-foreground);
+    --color-muted-foreground: var(--muted-foreground);
+    --color-border: var(--border);
+    --font-sans: var(--font-plus-jakarta), system-ui, sans-serif;
+    --font-display: var(--font-anybody), system-ui, sans-serif;
 }
 
 :root {
-  --background: #F5F8FF;
-  --foreground: #1A1F36;
-  --primary: #2C6FF7;
-  --primary-foreground: #ffffff;
-  --muted-foreground: rgba(44, 80, 160, 0.45);
-  --border: rgba(44, 111, 247, 0.18);
+    --background: #f5f8ff;
+    --foreground: #1a1f36;
+    --primary: #2c6ff7;
+    --primary-foreground: #ffffff;
+    --muted-foreground: rgba(44, 80, 160, 0.45);
+    --border: rgba(44, 111, 247, 0.18);
 }
 
-*, ::backdrop, ::before, ::after {
-  box-sizing: border-box;
-  border: 0 solid;
-  margin: 0;
-  padding: 0;
+*,
+::backdrop,
+::before,
+::after {
+    box-sizing: border-box;
+    border: 0 solid;
+    margin: 0;
+    padding: 0;
 }
 
 body {
-  background-color: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-plus-jakarta), system-ui, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-plus-jakarta), system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
-button, textarea, input {
-  -webkit-appearance: none;
-  appearance: none;
-  -webkit-tap-highlight-color: transparent;
+button,
+textarea,
+input {
+    -webkit-appearance: none;
+    appearance: none;
+    -webkit-tap-highlight-color: transparent;
 }
 
 @keyframes popIn {
-  0%   { opacity: 0; transform: scale(0.8) translateY(6px); }
-  60%  { transform: scale(1.04) translateY(-1px); }
-  100% { opacity: 1; transform: scale(1) translateY(0); }
+    0% {
+        opacity: 0;
+        transform: scale(0.8) translateY(6px);
+    }
+    60% {
+        transform: scale(1.04) translateY(-1px);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
 }
 
 @keyframes slideUp {
-  from { transform: translateY(100%); }
-  to   { transform: translateY(0); }
+    from {
+        transform: translateY(100%);
+    }
+    to {
+        transform: translateY(0);
+    }
 }
 
 @keyframes fadeUp {
-  from { opacity: 0; transform: translateY(10px); }
-  to   { opacity: 1; transform: translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 @keyframes pulse {
-  0%, 100% { opacity: 0.3; }
-  50%       { opacity: 1; }
+    0%,
+    100% {
+        opacity: 0.3;
+    }
+    50% {
+        opacity: 1;
+    }
 }
 
 @keyframes blink {
-  0%, 100% { opacity: 1; }
-  50%       { opacity: 0; }
+    0%,
+    100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
 }
 
 @keyframes dot-bounce {
-  0%, 80%, 100% { transform: translateY(0); opacity: 0.4; }
-  40%           { transform: translateY(-5px); opacity: 1; }
+    0%,
+    80%,
+    100% {
+        transform: translateY(0);
+        opacity: 0.4;
+    }
+    40% {
+        transform: translateY(-5px);
+        opacity: 1;
+    }
 }
 
-
 .animate-fade-up {
-  animation: fadeUp 0.6s ease both;
+    animation: fadeUp 0.6s ease both;
 }
 
 sup.ref {
-  font-size: 0.65em;
-  color: rgba(44, 111, 247, 0.55);
-  font-weight: 600;
-  vertical-align: super;
-  letter-spacing: 0.01em;
-  margin-left: 1px;
+    font-size: 0.65em;
+    color: rgba(44, 111, 247, 0.55);
+    font-weight: 600;
+    vertical-align: super;
+    letter-spacing: 0.01em;
+    margin-left: 1px;
 }
 
 /* Responsive layout helpers */
 .main-content {
-  padding: 28px 32px;
-  padding-right: calc(500px + 48px);
-  max-width: 1400px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
+    padding: 28px 32px;
+    padding-right: calc(500px + 48px);
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
 }
 
 .desktop-chat {
-  display: block;
+    display: block;
 }
 
 .mobile-fab {
-  display: none;
+    display: none;
 }
 
 .manifesto-grid {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 12px;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 12px;
 }
 
 @media (max-width: 768px) {
-  .main-content {
-    padding: 20px 16px;
-    padding-bottom: 100px;
-  }
-  .desktop-chat {
-    display: none;
-  }
-  .mobile-fab {
-    display: flex;
-  }
-  .manifesto-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  .manifesto-grid > * {
-    min-width: 0;
-    overflow: hidden;
-  }
-  .stats-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-  .stats-card {
-    padding: 16px 14px;
-  }
-  .stats-card .stats-value {
-    font-size: 36px;
-    letter-spacing: -1px;
-  }
+    .main-content {
+        padding: 20px 16px;
+        padding-bottom: 100px;
+    }
+    .desktop-chat {
+        display: none;
+    }
+    .mobile-fab {
+        display: flex;
+    }
+    .manifesto-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .manifesto-grid > * {
+        min-width: 0;
+        overflow: hidden;
+    }
+    .stats-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+    .stats-card {
+        padding: 16px 14px;
+    }
+    .stats-card .stats-value {
+        font-size: 36px;
+        letter-spacing: -1px;
+    }
 }
 
 .card-btn {
-  transition: border-color 0.2s, box-shadow 0.2s, transform 0.15s;
+    transition:
+        border-color 0.2s,
+        box-shadow 0.2s,
+        transform 0.15s;
 }
 .card-btn:hover {
-  border-color: rgba(44, 111, 247, 0.35) !important;
-  box-shadow: 0 4px 16px rgba(44, 111, 247, 0.1);
-  transform: translateY(-1px);
+    border-color: rgba(44, 111, 247, 0.35) !important;
+    box-shadow: 0 4px 16px rgba(44, 111, 247, 0.1);
+    transform: translateY(-1px);
 }
-

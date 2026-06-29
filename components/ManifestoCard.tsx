@@ -1,67 +1,84 @@
 // components/ManifestoCard.tsx
 const BULLETS = [
-  'Membentuk Hala Tuju Kempen Berteraskan Akar Umbi',
-  'Ketelusan Tawaran Melawan Politik Persepsi',
-  'Menyatukan Suara Generasi Baharu',
-]
+  "Membentuk hala tuju negeri berteraskan akar umbi",
+  "Ketelusan manifesto dan kad laporan tanpa manipulasi",
+  "Mendengar suara generasi baharu",
+];
 
 export default function ManifestoCard() {
   return (
     <div
       style={{
-        background: '#fff',
-        border: '1px solid rgba(44,111,247,0.14)',
-        borderRadius: '16px',
-        padding: '28px 32px',
-        boxShadow: '0 2px 12px rgba(44,111,247,0.04)',
+        background: "linear-gradient(to left, #f2fcfe, #cce0eb)",
+        borderRadius: "16px",
+        padding: "28px 80px",
+        boxShadow: "0 2px 12px rgba(44,111,247,0.04)",
+        textColor: "#fff",
       }}
     >
       <div
         style={{
-          fontSize: '16px',
+          fontSize: "24px",
           fontWeight: 800,
-          color: '#0A0F1E',
-          letterSpacing: '-0.3px',
-          marginBottom: '10px',
-          fontFamily: 'var(--font-anybody), sans-serif',
+          color: "#2C6FF7",
+          letterSpacing: "-0.3px",
+          marginBottom: "10px",
+          fontFamily: "var(--font-anybody), sans-serif",
         }}
       >
-        Kenapa Sistem ini penting?
+        Kenapa gunakan A.I untuk mendengar suara rakyat?
       </div>
-      <p
+      <ul
         style={{
-          fontSize: '14px',
-          lineHeight: 1.7,
-          color: '#1A1F36',
-          marginBottom: '22px',
+          listStyle: "none",
+          padding: 0,
+          margin: 0,
+          display: "flex",
+          flexDirection: "column",
+          gap: "28px",
         }}
       >
-        Bergerak ke depan dengan <strong style={{ color: '#0A0F1E', fontWeight: 700 }}>pendekatan moden</strong> selari dengan zaman. Kami memanfaatkan <strong style={{ color: '#0A0F1E', fontWeight: 700 }}>A.I</strong> untuk memastikan hala tuju ini dibina berasaskan <strong style={{ color: '#0A0F1E', fontWeight: 700 }}>suara sebenar rakyat</strong> dan <strong style={{ color: '#0A0F1E', fontWeight: 700 }}>visi kemajuan yang telus</strong>.
-      </p>
-      <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '14px' }}>
         {BULLETS.map((bullet, i) => (
-          <li key={i} style={{ display: 'flex', gap: '12px', alignItems: 'flex-start' }}>
+          <li
+            key={i}
+            style={{ display: "flex", gap: "8px", alignItems: "flex-start" }}
+          >
             <span
               style={{
                 flexShrink: 0,
-                width: '20px',
-                height: '20px',
-                borderRadius: '50%',
-                background: 'linear-gradient(135deg, #2C6FF7, #5B9BFF)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                marginTop: '2px',
+                width: "30px",
+                height: "30px",
+                borderRadius: "50%",
+                background: "linear-gradient(135deg, #2C6FF7, #5B9BFF)",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                marginTop: "4px",
               }}
             >
-              <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
-                <path d="M2 5l2 2 4-4" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+              <svg width="15" height="15" viewBox="0 0 10 10" fill="none">
+                <path
+                  d="M2 5l2 2 4-4"
+                  stroke="white"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
               </svg>
             </span>
-            <span style={{ fontSize: '14px', lineHeight: 1.65, color: '#1A1F36', fontWeight: 600 }}>{bullet}</span>
+            <span
+              style={{
+                fontSize: "24px",
+                lineHeight: 1.5,
+                color: "#000",
+                fontWeight: 600,
+              }}
+            >
+              {bullet}
+            </span>
           </li>
         ))}
       </ul>
     </div>
-  )
+  );
 }

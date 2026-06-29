@@ -1,106 +1,135 @@
 // app/page.tsx
-'use client'
+"use client";
 
-import { useEffect, useState, useCallback } from 'react'
-import Image from 'next/image'
-import ManifestoCard from '@/components/ManifestoCard'
-import ManifestoList from '@/components/ManifestoList'
-import StatsCard from '@/components/StatsCard'
-import ChatSidebar from '@/components/ChatSidebar'
-import { Message } from '@/lib/types'
+import { useEffect, useState, useCallback } from "react";
+import Image from "next/image";
+import ManifestoCard from "@/components/ManifestoCard";
+import ManifestoList from "@/components/ManifestoList";
+import StatsCard from "@/components/StatsCard";
+import ChatSidebar from "@/components/ChatSidebar";
+import { Message } from "@/lib/types";
 
 interface Stats {
-  cases: number | null
-  improvements: number | null
+  cases: number | null;
+  improvements: number | null;
 }
 
 const UNAVAILABLE =
-  'Maaf, sistem tidak tersedia buat masa ini. Sila cuba lagi.\n\nSorry, the system is currently unavailable. Please try again.'
+  "Maaf, sistem tidak tersedia buat masa ini. Sila cuba lagi.\n\nSorry, the system is currently unavailable. Please try again.";
 
 export default function Home() {
-  const stats: Stats = { cases: 247, improvements: 12 }
-  const [messages, setMessages] = useState<Message[]>([])
-  const [isLoading, setIsLoading] = useState(false)
-  const [chatOpen, setChatOpen] = useState(false)
+  const stats: Stats = { cases: 247, improvements: 12 };
+  const [messages, setMessages] = useState<Message[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [chatOpen, setChatOpen] = useState(false);
 
   useEffect(() => {
     if (chatOpen) {
-      document.body.style.overflow = 'hidden'
+      document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = ''
+      document.body.style.overflow = "";
     }
-    return () => { document.body.style.overflow = '' }
-  }, [chatOpen])
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [chatOpen]);
 
-  const sendMessage = useCallback(async (text: string) => {
-    if (isLoading) return
-    if (window.innerWidth <= 768) setChatOpen(true)
-    const userMsg: Message = {
-      id: crypto.randomUUID(),
-      role: 'user',
-      content: text,
-      timestamp: new Date(),
-    }
-    setMessages(prev => [...prev, userMsg])
-    setIsLoading(true)
+  const sendMessage = useCallback(
+    async (text: string) => {
+      if (isLoading) return;
+      if (window.innerWidth <= 768) setChatOpen(true);
+      const userMsg: Message = {
+        id: crypto.randomUUID(),
+        role: "user",
+        content: text,
+        timestamp: new Date(),
+      };
+      setMessages((prev) => [...prev, userMsg]);
+      setIsLoading(true);
 
-    try {
-      const res = await fetch('/api/chat', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message: text }),
-      })
-      if (!res.ok) throw new Error(res.statusText)
-      const data = (await res.json()) as { reply?: string; sources?: string[] }
-      if (!data.reply) throw new Error('empty reply')
-      setMessages(prev => [
-        ...prev,
-        {
-          id: crypto.randomUUID(),
-          role: 'assistant',
-          content: data.reply as string,
-          timestamp: new Date(),
-          sources: data.sources,
-        },
-      ])
-    } catch {
-      setMessages(prev => [
-        ...prev,
-        { id: crypto.randomUUID(), role: 'assistant', content: UNAVAILABLE, timestamp: new Date() },
-      ])
-    } finally {
-      setIsLoading(false)
-    }
-  }, [isLoading])
+      try {
+        const res = await fetch("/api/chat", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ message: text }),
+        });
+        if (!res.ok) throw new Error(res.statusText);
+        const data = (await res.json()) as {
+          reply?: string;
+          sources?: string[];
+        };
+        if (!data.reply) throw new Error("empty reply");
+        setMessages((prev) => [
+          ...prev,
+          {
+            id: crypto.randomUUID(),
+            role: "assistant",
+            content: data.reply as string,
+            timestamp: new Date(),
+            sources: data.sources,
+          },
+        ]);
+      } catch {
+        setMessages((prev) => [
+          ...prev,
+          {
+            id: crypto.randomUUID(),
+            role: "assistant",
+            content: UNAVAILABLE,
+            timestamp: new Date(),
+          },
+        ]);
+      } finally {
+        setIsLoading(false);
+      }
+    },
+    [isLoading],
+  );
 
   return (
     <div
       style={{
-        minHeight: '100dvh',
-        background: 'var(--background)',
-        fontFamily: 'var(--font-plus-jakarta), system-ui, sans-serif',
-        color: 'var(--foreground)',
+        minHeight: "100dvh",
+        background: "var(--background)",
+        fontFamily: "var(--font-plus-jakarta), system-ui, sans-serif",
+        color: "var(--foreground)",
       }}
     >
       {/* Header */}
       <header
         style={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          padding: '18px 32px',
-          borderBottom: '1px solid rgba(44,111,247,0.1)',
-          background: 'rgba(245,248,255,0.9)',
-          backdropFilter: 'blur(8px)',
-          position: 'sticky',
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          padding: "18px 32px",
+          borderBottom: "1px solid rgba(44,111,247,0.1)",
+          background: "rgba(245,248,255,0.9)",
+          backdropFilter: "blur(8px)",
+          position: "sticky",
           top: 0,
           zIndex: 10,
         }}
       >
-        <span style={{ fontFamily: 'var(--font-anybody), sans-serif', fontSize: '18px', fontWeight: 800, letterSpacing: '-0.3px', color: '#1A1F36' }}>
-          Onn <span style={{ color: '#2C6FF7' }}>AI</span>
+        <span
+          style={{
+            fontFamily: "var(--font-anybody), sans-serif",
+            fontSize: "18px",
+            fontWeight: 800,
+            letterSpacing: "-0.3px",
+            color: "#1A1F36",
+          }}
+        >
+          Onn <span style={{ color: "#2C6FF7" }}>AI</span>
         </span>
-        <span style={{ fontSize: '11px', fontWeight: 500, color: 'rgba(44,111,247,0.4)', letterSpacing: '1.5px', textTransform: 'uppercase' }}>
+        <span
+          style={{
+            fontSize: "11px",
+            fontWeight: 500,
+            color: "rgba(44,111,247,0.4)",
+            letterSpacing: "1.5px",
+            textTransform: "uppercase",
+          }}
+        >
           Beta
         </span>
       </header>
@@ -109,33 +138,62 @@ export default function Home() {
       <div className="main-content">
         <ManifestoCard />
 
-        <div className="stats-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
-          <StatsCard label="Kes Dikemukakan" value={stats.cases} sublabel="aduan rakyat diterima" />
-          <StatsCard label="Penambahbaikan" value={stats.improvements} sublabel="kes diselesaikan" />
+        <div
+          className="stats-grid"
+          style={{
+            display: "grid",
+            gridTemplateColumns: "1fr 1fr",
+            gap: "16px",
+          }}
+        >
+          <StatsCard
+            label="Maklum balas Dikemukakan"
+            value={stats.cases}
+            sublabel="diterima"
+          />
+          <StatsCard
+            label="Soalan yang diajukan"
+            value={stats.improvements}
+            sublabel="soalan"
+          />
         </div>
 
         {/* Telegram CTA */}
         <div
           style={{
-            background: '#fff',
-            border: '1px solid rgba(44,111,247,0.14)',
-            borderRadius: '16px',
-            padding: '20px 24px',
-            boxShadow: '0 2px 12px rgba(44,111,247,0.04)',
-            display: 'flex',
-            flexDirection: 'column',
-            gap: '14px',
-            maxWidth: '66%',
-            margin: '0 auto',
-            width: '100%',
+            background: "#fff",
+            border: "1px solid rgba(44,111,247,0.14)",
+            borderRadius: "16px",
+            padding: "20px 24px",
+            boxShadow: "0 2px 12px rgba(44,111,247,0.04)",
+            display: "flex",
+            flexDirection: "column",
+            gap: "14px",
+            maxWidth: "66%",
+            margin: "0 auto",
+            width: "100%",
           }}
         >
           <div>
-            <p style={{ fontSize: '14px', fontWeight: 600, color: '#1A1F36', lineHeight: 1.5, marginBottom: '4px' }}>
-              Kepada sesiapa yang mempunyai pandangan mengenai tempat anda
+            <p
+              style={{
+                fontSize: "16px",
+                fontWeight: 600,
+                color: "#1A1F36",
+                marginBottom: "4px",
+              }}
+            >
+              Sesiapa yang mempunyai pandangan mengenai tempat anda
             </p>
-            <p style={{ fontSize: '12px', color: 'rgba(44,80,160,0.55)', fontWeight: 400 }}>
-              Mari sembang dengan Onn AI kami
+            <p
+              style={{
+                fontSize: "16px",
+                color: "rgba(44,80,160,1)",
+                fontWeight: 500,
+                marginTop: "10px",
+              }}
+            >
+              Onn, tanya apa khabar?
             </p>
           </div>
           <a
@@ -143,47 +201,65 @@ export default function Home() {
             target="_blank"
             rel="noopener noreferrer"
             style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '8px',
-              background: 'linear-gradient(135deg, #2C6FF7, #5B9BFF)',
-              color: '#fff',
+              display: "inline-flex",
+              alignItems: "center",
+              gap: "8px",
+              marginTop: "10px",
+              background: "linear-gradient(135deg, #2C6FF7, #5B9BFF)",
+              color: "#fff",
               fontWeight: 600,
-              fontSize: '13px',
-              padding: '11px 20px',
-              borderRadius: '12px',
-              textDecoration: 'none',
-              boxShadow: '0 4px 16px rgba(44,111,247,0.3)',
-              alignSelf: 'flex-start',
+              fontSize: "16px",
+              padding: "11px 20px",
+              borderRadius: "12px",
+              textDecoration: "none",
+              alignSelf: "flex-start",
             }}
           >
             <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
               <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12l-6.871 4.326-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.833.941z" />
             </svg>
-            Sampaikan pandangan anda melalui Aplikasi Telegram
+            Sembang dengan Onn melalui Aplikasi Telegram
           </a>
         </div>
 
         {/* YouTube Live */}
         <div
           style={{
-            background: '#fff',
-            border: '1px solid rgba(44,111,247,0.14)',
-            borderRadius: '16px',
-            overflow: 'hidden',
-            boxShadow: '0 2px 12px rgba(44,111,247,0.04)',
+            background: "#fff",
+            border: "1px solid rgba(44,111,247,0.14)",
+            borderRadius: "16px",
+            overflow: "hidden",
+            boxShadow: "0 2px 12px rgba(44,111,247,0.04)",
           }}
         >
-          <div style={{ fontSize: '10px', fontWeight: 600, color: 'rgba(44,111,247,0.5)', letterSpacing: '1.8px', textTransform: 'uppercase', padding: '16px 20px 12px' }}>
+          <div
+            style={{
+              fontSize: "10px",
+              fontWeight: 600,
+              color: "rgba(44,111,247,0.5)",
+              letterSpacing: "1.8px",
+              textTransform: "uppercase",
+              padding: "16px 20px 12px",
+            }}
+          >
             Siaran Langsung
           </div>
-          <div style={{ position: 'relative', paddingBottom: '56.25%', height: 0 }}>
+          <div
+            style={{ position: "relative", paddingBottom: "56.25%", height: 0 }}
+          >
             <iframe
               src="https://www.youtube.com/embed/t_mnJZDJ2bM?autoplay=0"
               title="YouTube Live"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
-              style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', border: 'none' }}
+              style={{
+                position: "absolute",
+                top: 0,
+                left: 0,
+                width: "100%",
+                height: "100%",
+                border: "none",
+              }}
             />
           </div>
         </div>
@@ -195,46 +271,50 @@ export default function Home() {
       <div
         className="desktop-chat"
         style={{
-          position: 'fixed',
-          top: '73px',
-          right: '24px',
-          width: '460px',
-          height: 'calc(100dvh - 97px)',
+          position: "fixed",
+          top: "73px",
+          right: "24px",
+          width: "460px",
+          height: "calc(100dvh - 97px)",
           zIndex: 20,
         }}
       >
-        <ChatSidebar messages={messages} isLoading={isLoading} onSend={sendMessage} />
+        <ChatSidebar
+          messages={messages}
+          isLoading={isLoading}
+          onSend={sendMessage}
+        />
       </div>
 
       {/* Mobile: FAB + speech bubble */}
       <div
         className="mobile-fab"
         style={{
-          position: 'fixed',
-          bottom: '24px',
-          right: '24px',
+          position: "fixed",
+          bottom: "24px",
+          right: "24px",
           zIndex: 30,
-          flexDirection: 'column',
-          alignItems: 'flex-end',
-          gap: '10px',
+          flexDirection: "column",
+          alignItems: "flex-end",
+          gap: "10px",
         }}
       >
         {/* Speech bubble */}
         {!chatOpen && (
           <div
             style={{
-              background: '#fff',
-              border: '1px solid rgba(44,111,247,0.18)',
-              borderRadius: '16px 16px 4px 16px',
-              padding: '10px 14px',
-              fontSize: '13px',
+              background: "#fff",
+              border: "1px solid rgba(44,111,247,0.18)",
+              borderRadius: "16px 16px 4px 16px",
+              padding: "10px 14px",
+              fontSize: "13px",
               fontWeight: 500,
-              color: '#1A1F36',
-              maxWidth: '200px',
-              boxShadow: '0 4px 16px rgba(44,111,247,0.12)',
-              animation: 'popIn 0.35s ease both',
+              color: "#1A1F36",
+              maxWidth: "200px",
+              boxShadow: "0 4px 16px rgba(44,111,247,0.12)",
+              animation: "popIn 0.35s ease both",
               lineHeight: 1.4,
-              cursor: 'pointer',
+              cursor: "pointer",
             }}
             onClick={() => setChatOpen(true)}
           >
@@ -247,18 +327,24 @@ export default function Home() {
           onClick={() => setChatOpen(true)}
           aria-label="Buka Onn AI"
           style={{
-            width: '60px',
-            height: '60px',
-            borderRadius: '50%',
-            border: 'none',
-            cursor: 'pointer',
+            width: "60px",
+            height: "60px",
+            borderRadius: "50%",
+            border: "none",
+            cursor: "pointer",
             padding: 0,
-            overflow: 'hidden',
-            boxShadow: '0 4px 20px rgba(44,111,247,0.35)',
+            overflow: "hidden",
+            boxShadow: "0 4px 20px rgba(44,111,247,0.35)",
             flexShrink: 0,
           }}
         >
-          <Image src="/onn.jpg" alt="Onn AI" width={60} height={60} style={{ objectFit: 'cover', width: '100%', height: '100%' }} />
+          <Image
+            src="/onn.jpg"
+            alt="Onn AI"
+            width={60}
+            height={60}
+            style={{ objectFit: "cover", width: "100%", height: "100%" }}
+          />
         </button>
       </div>
 
@@ -266,71 +352,84 @@ export default function Home() {
       {chatOpen && (
         <div
           style={{
-            position: 'fixed',
+            position: "fixed",
             inset: 0,
             zIndex: 40,
-            background: 'rgba(26,31,54,0.4)',
-            display: 'flex',
-            alignItems: 'flex-end',
+            background: "rgba(26,31,54,0.4)",
+            display: "flex",
+            alignItems: "flex-end",
           }}
           onClick={() => setChatOpen(false)}
         >
           <div
             style={{
-              width: '100%',
-              height: '88dvh',
-              borderRadius: '20px 20px 0 0',
-              overflow: 'hidden',
-              animation: 'slideUp 0.28s ease',
+              width: "100%",
+              height: "88dvh",
+              borderRadius: "20px 20px 0 0",
+              overflow: "hidden",
+              animation: "slideUp 0.28s ease",
             }}
-            onClick={e => e.stopPropagation()}
+            onClick={(e) => e.stopPropagation()}
           >
             {/* Sheet header */}
             <div
               style={{
-                background: '#fff',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                padding: '14px 16px 12px',
-                borderBottom: '1px solid rgba(44,111,247,0.08)',
+                background: "#fff",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+                padding: "14px 16px 12px",
+                borderBottom: "1px solid rgba(44,111,247,0.08)",
               }}
             >
-              <span style={{ fontFamily: 'var(--font-anybody), sans-serif', fontSize: '15px', fontWeight: 800, color: '#1A1F36', letterSpacing: '-0.2px' }}>
-                Onn <span style={{ color: '#2C6FF7' }}>AI</span>
+              <span
+                style={{
+                  fontFamily: "var(--font-anybody), sans-serif",
+                  fontSize: "15px",
+                  fontWeight: 800,
+                  color: "#1A1F36",
+                  letterSpacing: "-0.2px",
+                }}
+              >
+                Onn <span style={{ color: "#2C6FF7" }}>AI</span>
               </span>
               <button
                 onClick={() => setChatOpen(false)}
                 aria-label="Tutup"
                 style={{
-                  width: '32px',
-                  height: '32px',
-                  borderRadius: '50%',
-                  border: 'none',
-                  background: 'rgba(44,111,247,0.08)',
-                  cursor: 'pointer',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  color: '#2C6FF7',
+                  width: "32px",
+                  height: "32px",
+                  borderRadius: "50%",
+                  border: "none",
+                  background: "rgba(44,111,247,0.08)",
+                  cursor: "pointer",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  color: "#2C6FF7",
                 }}
               >
                 <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                  <path d="M1 1l12 12M13 1L1 13" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                  <path
+                    d="M1 1l12 12M13 1L1 13"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                  />
                 </svg>
               </button>
             </div>
-            <div style={{ height: 'calc(88dvh - 57px)' }}>
+            <div style={{ height: "calc(88dvh - 57px)" }}>
               <ChatSidebar
                 messages={messages}
                 isLoading={isLoading}
                 onSend={sendMessage}
-                style={{ borderRadius: 0, border: 'none', boxShadow: 'none' }}
+                style={{ borderRadius: 0, border: "none", boxShadow: "none" }}
               />
             </div>
           </div>
         </div>
       )}
     </div>
-  )
+  );
 }
