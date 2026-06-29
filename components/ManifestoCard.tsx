@@ -13,7 +13,7 @@ export default function ManifestoCard() {
         borderRadius: "16px",
         padding: "28px 80px",
         boxShadow: "0 2px 12px rgba(44,111,247,0.04)",
-        textColor: "#fff",
+        color: "#fff",
       }}
     >
       <div
