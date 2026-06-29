@@ -7,6 +7,8 @@ import ManifestoCard from "@/components/ManifestoCard";
 import ManifestoList from "@/components/ManifestoList";
 import StatsCard from "@/components/StatsCard";
 import ChatSidebar from "@/components/ChatSidebar";
+import ShareButton from "@/components/ShareButton";
+import SupportShare from "@/components/SupportShare";
 import { Message } from "@/lib/types";
 
 interface Stats {
@@ -23,7 +25,8 @@ function toYouTubeEmbedUrl(url: string): string {
     // Already an embed URL
     if (u.pathname.startsWith("/embed/")) return url;
     // youtu.be/VIDEO_ID
-    if (u.hostname === "youtu.be") return `https://www.youtube.com/embed${u.pathname}`;
+    if (u.hostname === "youtu.be")
+      return `https://www.youtube.com/embed${u.pathname}`;
     // youtube.com/watch?v=VIDEO_ID
     const v = u.searchParams.get("v");
     if (v) return `https://www.youtube.com/embed/${v}`;
@@ -151,7 +154,102 @@ export default function Home() {
 
       {/* Main content */}
       <div className="main-content">
+        {/*<div
+          style={{
+            display: "flex",
+            justifyContent: "flex-end",
+            marginBottom: "18px",
+          }}
+        >
+          <ShareButton />
+        </div>*/}
+        <SupportShare />
+
         <ManifestoCard />
+
+        {/* YouTube Live */}
+        <div
+          style={{
+            background: "#fff",
+            border: "1px solid rgba(44,111,247,0.14)",
+            borderRadius: "16px",
+            overflow: "hidden",
+            boxShadow: "0 2px 12px rgba(44,111,247,0.04)",
+          }}
+        >
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "8px",
+              padding: "16px 20px 12px",
+            }}
+          >
+            <span
+              style={{
+                width: "8px",
+                height: "8px",
+                borderRadius: "50%",
+                background: "#FF0000",
+                boxShadow: "0 0 0 0 rgba(255,0,0,0.7)",
+                animation: "pulse 2s infinite",
+              }}
+            />
+            <span
+              style={{
+                fontSize: "10px",
+                fontWeight: 600,
+                color: "rgba(44,111,247,1)",
+                letterSpacing: "1.8px",
+                textTransform: "uppercase",
+              }}
+            >
+              Tanyalah Onn
+            </span>
+          </div>
+          <div
+            style={{ position: "relative", paddingBottom: "56.25%", height: 0 }}
+          >
+            <iframe
+              src={toYouTubeEmbedUrl(
+                process.env.NEXT_PUBLIC_YOUTUBE_LIVE_URL ?? "yxslO3T3Hb4",
+              )}
+              title="YouTube Live"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              style={{
+                position: "absolute",
+                top: 0,
+                left: 0,
+                width: "100%",
+                height: "100%",
+                border: "none",
+              }}
+            />
+          </div>
+          <a
+            href={process.env.NEXT_PUBLIC_YOUTUBE_LIVE_URL ?? "https://www.youtube.com/watch?v=yxslO3T3Hb4"}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "8px",
+              padding: "14px 20px",
+              background: "#FF0000",
+              color: "#fff",
+              fontWeight: 600,
+              fontSize: "14px",
+              textDecoration: "none",
+            }}
+          >
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.546 12 3.546 12 3.546s-7.505 0-9.377.504A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.504 9.376.504 9.376.504s7.505 0 9.377-.504a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+            </svg>
+            Pergi ke Youtube Live kami untuk bertanya kepada Onn
+          </a>
+        </div>
 
         <div
           className="stats-grid"
@@ -220,53 +318,16 @@ export default function Home() {
                 textDecoration: "none",
               }}
             >
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
                 <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12l-6.871 4.326-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.833.941z" />
               </svg>
               Sembang dengan Onn melalui Aplikasi Telegram
             </a>
-          </div>
-        </div>
-
-        {/* YouTube Live */}
-        <div
-          style={{
-            background: "#fff",
-            border: "1px solid rgba(44,111,247,0.14)",
-            borderRadius: "16px",
-            overflow: "hidden",
-            boxShadow: "0 2px 12px rgba(44,111,247,0.04)",
-          }}
-        >
-          <div
-            style={{
-              fontSize: "10px",
-              fontWeight: 600,
-              color: "rgba(44,111,247,0.5)",
-              letterSpacing: "1.8px",
-              textTransform: "uppercase",
-              padding: "16px 20px 12px",
-            }}
-          >
-            Siaran Langsung
-          </div>
-          <div
-            style={{ position: "relative", paddingBottom: "56.25%", height: 0 }}
-          >
-            <iframe
-              src={toYouTubeEmbedUrl(process.env.NEXT_PUBLIC_YOUTUBE_LIVE_URL ?? "yxslO3T3Hb4")}
-              title="YouTube Live"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-              style={{
-                position: "absolute",
-                top: 0,
-                left: 0,
-                width: "100%",
-                height: "100%",
-                border: "none",
-              }}
-            />
           </div>
         </div>
 

@@ -11,14 +11,14 @@ export default function ManifestoCard() {
       style={{
         background: "linear-gradient(to left, #f2fcfe, #cce0eb)",
         borderRadius: "16px",
-        padding: "28px 80px",
+        padding: "clamp(20px, 5vw, 80px) clamp(16px, 5vw, 80px)",
         boxShadow: "0 2px 12px rgba(44,111,247,0.04)",
         color: "#fff",
       }}
     >
       <div
         style={{
-          fontSize: "24px",
+          fontSize: "clamp(18px, 3vw, 24px)",
           fontWeight: 800,
           color: "#2C6FF7",
           letterSpacing: "-0.3px",
@@ -68,7 +68,7 @@ export default function ManifestoCard() {
             </span>
             <span
               style={{
-                fontSize: "24px",
+                fontSize: "clamp(16px, 2.5vw, 24px)",
                 lineHeight: 1.5,
                 color: "#000",
                 fontWeight: 600,
