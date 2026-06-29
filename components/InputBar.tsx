@@ -71,7 +71,7 @@ export default function InputBar({ onSend, isLoading }: InputBarProps) {
           type="button"
           onClick={handleSend}
           disabled={!hasValue || isLoading}
-          aria-label="Send message"
+          aria-label="Hantar mesej"
           style={{
             flexShrink: 0,
             width: '38px',
@@ -92,9 +92,6 @@ export default function InputBar({ onSend, isLoading }: InputBarProps) {
           </svg>
         </button>
       </div>
-      <p style={{ textAlign: 'center', fontSize: '11px', color: 'rgba(44,80,160,0.3)', marginTop: '10px', fontWeight: 400 }}>
-        Onn AI can make mistakes. Use your judgment.
-      </p>
     </div>
   )
 }

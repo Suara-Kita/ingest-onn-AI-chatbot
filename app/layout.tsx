@@ -1,6 +1,6 @@
 // app/layout.tsx
 import type { Metadata, Viewport } from 'next'
-import { Plus_Jakarta_Sans, Syne } from 'next/font/google'
+import { Anybody, Plus_Jakarta_Sans } from 'next/font/google'
 import './globals.css'
 
 const plusJakarta = Plus_Jakarta_Sans({
@@ -9,10 +9,11 @@ const plusJakarta = Plus_Jakarta_Sans({
   variable: '--font-plus-jakarta',
 })
 
-const syne = Syne({
+const anybody = Anybody({
   subsets: ['latin'],
-  weight: ['700', '800'],
-  variable: '--font-syne',
+  weight: 'variable',
+  variable: '--font-anybody',
+  axes: ['wdth'],
 })
 
 export const viewport: Viewport = {
@@ -24,12 +25,16 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   title: 'Onn AI — Pembantu Kawasan Sekijang',
   description: 'Tanya soalan tentang kawasan Sekijang, program kerajaan, dan dasar Johor.',
+  icons: {
+    icon: '/onn.jpg',
+    apple: '/onn.jpg',
+  },
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="ms" className={`${plusJakarta.variable} ${syne.variable}`}>
-      <body>{children}</body>
+    <html lang="ms" className={`${plusJakarta.variable} ${anybody.variable}`} suppressHydrationWarning>
+      <body suppressHydrationWarning>{children}</body>
     </html>
   )
 }

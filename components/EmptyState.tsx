@@ -10,10 +10,14 @@ interface CardItem {
   question: string
 }
 
-function HeartIcon() {
+function ManifestoIcon() {
   return (
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
-      <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+      <polyline points="14 2 14 8 20 8" />
+      <line x1="16" y1="13" x2="8" y2="13" />
+      <line x1="16" y1="17" x2="8" y2="17" />
+      <polyline points="10 9 9 9 8 9" />
     </svg>
   )
 }
@@ -68,10 +72,10 @@ function ChartIcon() {
 
 const CARDS: CardItem[] = [
   {
-    icon: <HeartIcon />,
-    title: 'Program Bantuan',
-    desc: 'Bantuan kewangan & sokongan rakyat',
-    question: 'Apakah program bantuan untuk belia?',
+    icon: <ManifestoIcon />,
+    title: 'Manifesto PRN 2026',
+    desc: 'Janji & hala tuju BN untuk Johor',
+    question: 'Apakah kandungan manifesto BN Johor?',
   },
   {
     icon: <BriefcaseIcon />,
@@ -87,15 +91,15 @@ const CARDS: CardItem[] = [
   },
   {
     icon: <UsersIcon />,
-    title: 'Family Support',
-    desc: 'Support for low-income families',
-    question: 'What support is available for low-income families?',
+    title: 'Sokongan Keluarga',
+    desc: 'Sokongan untuk keluarga berpendapatan rendah',
+    question: 'Apakah sokongan untuk keluarga berpendapatan rendah?',
   },
   {
     icon: <GlobeIcon />,
     title: 'JS-SEZ Johor',
-    desc: "Impact on Johor's economy & jobs",
-    question: 'What is JS-SEZ and how does it affect Johor?',
+    desc: 'Kesan kepada ekonomi & pekerjaan Johor',
+    question: 'Apa itu JS-SEZ dan bagaimana ia mempengaruhi Johor?',
   },
   {
     icon: <ChartIcon />,
@@ -123,7 +127,7 @@ export default function EmptyState({ onSelect }: EmptyStateProps) {
       }}
     >
       {/* Heading */}
-      <p style={{ fontFamily: 'var(--font-syne), sans-serif', fontSize: '22px', fontWeight: 700, color: '#1A1F36', marginBottom: '8px', letterSpacing: '-0.5px', textAlign: 'center' }}>
+      <p style={{ fontFamily: 'var(--font-anybody), sans-serif', fontSize: '22px', fontWeight: 700, color: '#1A1F36', marginBottom: '8px', letterSpacing: '-0.5px', textAlign: 'center' }}>
         Apa yang boleh saya bantu?
       </p>
       <p style={{ fontSize: '13px', color: 'rgba(44,80,160,0.45)', fontWeight: 400, textAlign: 'center', maxWidth: '280px', lineHeight: 1.6, marginBottom: '40px' }}>
