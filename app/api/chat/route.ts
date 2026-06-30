@@ -15,7 +15,6 @@ export async function POST(req: NextRequest) {
   const ragUrl = process.env.RAG_API_URL
 
   if (!ragUrl) {
-    // Local development: return a mock response
     await new Promise(r => setTimeout(r, 600))
     return NextResponse.json({
       reply: `**[Mock Response — RAG not configured]**\n\nYou asked: "${message.trim()}"\n\nSet \`RAG_API_URL\` in \`.env.local\` to connect to the deployed knowledge base.`,

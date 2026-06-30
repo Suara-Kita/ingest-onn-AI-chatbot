@@ -2,28 +2,22 @@
 import { NextResponse } from 'next/server'
 
 export async function GET() {
-  const dashboardUrl = process.env.DASHBOARD_URL
+  const ragUrl = process.env.RAG_API_URL
 
-  if (!dashboardUrl) {
-    return NextResponse.json({ cases: null, improvements: null })
+  if (!ragUrl) {
+    return NextResponse.json({ questions: null, maklumBalas: null })
   }
 
   try {
-    const [totalRes, dispatchedRes] = await Promise.all([
-      fetch(`${dashboardUrl}/api/v1/issues`, { next: { revalidate: 60 } }),
-      fetch(`${dashboardUrl}/api/v1/issues?status=dispatched`, { next: { revalidate: 60 } }),
-    ])
-
-    const [totalData, dispatchedData] = await Promise.all([
-      totalRes.json() as Promise<{ total?: number }>,
-      dispatchedRes.json() as Promise<{ total?: number }>,
-    ])
-
-    return NextResponse.json({
-      cases: totalData.total ?? 0,
-      improvements: dispatchedData.total ?? 0,
+    const res = await fetch(`${ragUrl}/stats`, {
+      signal: AbortSignal.timeout(3000),
+    })
+    if (!res.ok) throw new Error(`KB ${res.status}`)
+    const data = await res.json() as { questions: number | null; maklumBalas: number | null }
+    return NextResponse.json(data, {
+      headers: { 'Cache-Control': 'public, max-age=10, stale-while-revalidate=30' },
     })
   } catch {
-    return NextResponse.json({ cases: null, improvements: null })
+    return NextResponse.json({ questions: null, maklumBalas: null })
   }
 }

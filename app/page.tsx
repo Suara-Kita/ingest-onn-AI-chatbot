@@ -12,8 +12,8 @@ import SupportShare from "@/components/SupportShare";
 import { Message } from "@/lib/types";
 
 interface Stats {
-  cases: number | null;
-  improvements: number | null;
+  questions: number | null;
+  maklumBalas: number | null;
 }
 
 const UNAVAILABLE =
@@ -36,8 +36,17 @@ function toYouTubeEmbedUrl(url: string): string {
 }
 
 export default function Home() {
-  const stats: Stats = { cases: 247, improvements: 12 };
+  const [stats, setStats] = useState<Stats>({ questions: null, maklumBalas: null });
   const [messages, setMessages] = useState<Message[]>([]);
+
+  useEffect(() => {
+    const controller = new AbortController()
+    fetch('/api/stats', { signal: controller.signal })
+      .then(r => r.json())
+      .then(d => setStats(d))
+      .catch(() => {})
+    return () => controller.abort()
+  }, []);
   const [isLoading, setIsLoading] = useState(false);
   const [chatOpen, setChatOpen] = useState(false);
 
@@ -260,13 +269,13 @@ export default function Home() {
           }}
         >
           <StatsCard
-            label="Maklum balas Dikemukakan"
-            value={stats.cases}
-            sublabel="diterima"
+            label="Maklum Balas Disalurkan"
+            value={stats.maklumBalas}
+            sublabel="disalurkan"
           />
           <StatsCard
             label="Soalan yang diajukan"
-            value={stats.improvements}
+            value={stats.questions}
             sublabel="soalan"
           />
         </div>
