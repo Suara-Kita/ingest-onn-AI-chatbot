@@ -30,6 +30,9 @@ function toYouTubeEmbedUrl(url: string): string {
     // youtube.com/watch?v=VIDEO_ID
     const v = u.searchParams.get("v");
     if (v) return `https://www.youtube.com/embed/${v}`;
+    // youtube.com/live/VIDEO_ID
+    if (u.pathname.startsWith("/live/"))
+      return `https://www.youtube.com/embed/${u.pathname.slice("/live/".length)}`;
   } catch {}
   // Treat as bare video ID
   return `https://www.youtube.com/embed/${url}`;
